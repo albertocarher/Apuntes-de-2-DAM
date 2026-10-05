@@ -1,0 +1,53 @@
+package com.ejemplo.catalogo.repository.file;
+
+import com.ejemplo.catalogo.model.Producto;
+import com.ejemplo.catalogo.model.ProductosXML;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+
+import java.io.IOException;
+import java.io.UncheckedIOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
+import java.util.List;
+
+public class XmlRepository extends AbstractRepository{
+    private final XmlMapper mapper;
+    public XmlRepository(Path path) {
+        super(path);
+        productos = load();
+        mapper = new XmlMapper();
+    }
+
+    @Override
+    public void saveAll(List<Producto> productos) {
+        Path temporal = null;
+        try {
+            ProductosXML productosXML = new ProductosXML();
+            productosXML.setProductos(productos);
+            mapper.writerWithDefaultPrettyPrinter()
+                    .writeValue(getPath().toFile(), productosXML);
+
+        } catch (IOException e) {
+            throw new UncheckedIOException("No se pudo guardar " + getPath(), e);
+        }
+    }
+
+    @Override
+    public List<Producto> load() {
+
+        try {
+            ProductosXML productosXML = mapper.readValue(getPath().toFile(), ProductosXML.class);
+            productos.clear();
+            productos.addAll(productosXML.getProductos());
+            if (productosXML.getProductos() == null) {
+                throw new IllegalArgumentException("El XML debe contener una lista, no null");
+            }
+        } catch (IOException e) {
+            throw new UncheckedIOException("No se pudo cargar " + getPath(), e);
+        }
+        return productos;
+    }
+}
