@@ -12,11 +12,10 @@ import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-public class CsvRepository extends AbstractRepository {
+public class CsvProductoRepository extends AbstractFileRepository<Producto, Long>
+        implements IProductoRepository {
 
     private final CSVFormat inputFormat = CSVFormat.DEFAULT.builder()
             .setHeader()
@@ -25,15 +24,54 @@ public class CsvRepository extends AbstractRepository {
     private final CSVFormat outputFormat = CSVFormat.DEFAULT.builder()
             .setHeader("id", "nombre", "precio")
             .get();
-    List<Producto> productos;
 
-    CsvRepository(Path path) {
+    public CsvProductoRepository(Path path) {
         super(path);
-        productos = load();
+    }
+
+    @Override
+    protected List<Producto> readAll() {
+        try (Reader reader = Files.newBufferedReader(getPath(), StandardCharsets.UTF_8);
+             CSVParser parser = inputFormat.parse(reader)) {
+            for (CSVRecord row : parser) {
+                list.add(new Producto(
+                        Long.parseLong(row.get("id")),
+                        row.get("nombre"),
+                        Double.parseDouble(row.get("precio"))));
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+            //logger error
+        }
+        return list;
+    }
+
+    @Override
+    protected void writeAll(List<Producto> elements) {
+        try{
+            try (Writer writer = Files.newBufferedWriter(getPath(), StandardCharsets.UTF_8);
+                 CSVPrinter printer = new CSVPrinter(writer, outputFormat)) {
+                for (Producto p : elements) printer.printRecord(p.id(), p.nombre(), p.precio());
+            }
+        }catch(Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+   /* List<Producto> productos;
+
+    @Override
+    protected List<Producto> readAll() {
+        return List.of();
+    }
+
+    CsvProductoRepository(Path path) {
+        super(path);
+        list = load();
     }
 
 
-    public List<Producto> load()  {
+    public List<T> load()  {
         try (Reader reader = Files.newBufferedReader(getPath(), StandardCharsets.UTF_8);
              CSVParser parser = inputFormat.parse(reader)) {
             for (CSVRecord row : parser) {
@@ -50,14 +88,14 @@ public class CsvRepository extends AbstractRepository {
     }
 
     @Override
-    public void saveAll(List<Producto> productos){
+    public void writeAll(List<T> productos){
         try{
             try (Writer writer = Files.newBufferedWriter(getPath(), StandardCharsets.UTF_8);
                  CSVPrinter printer = new CSVPrinter(writer, outputFormat)) {
-                for (Producto p : productos) printer.printRecord(p.id(), p.nombre(), p.precio());
+                for (T p : productos) printer.printRecord(p.id(), p.nombre(), p.precio());
             }
         }catch(Exception e){
             throw new RuntimeException(e);
         }
-    }
+    }*/
 }
