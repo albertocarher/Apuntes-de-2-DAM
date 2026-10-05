@@ -1,0 +1,6 @@
+<productos>
+  <producto><id>1</id><nombre>Teclado mecánico</nombre><precio>49.99</precio><stock>10</stock></producto>
+  <producto><id>2</id><nombre>Monitor</nombre><precio>219.90</precio><stock>4</stock></producto>
+  <producto><id>3</id><nombre>Ratón</nombre><precio>24.50</precio><stock>25</stock></producto>
+  <producto><id>4</id><nombre>Webcam</nombre><precio>79.00</precio><stock>0</stock></producto>
+</productos>
