@@ -2,7 +2,9 @@ package es.codelearnacademy.filelab.service;
 
 import es.codelearnacademy.filelab.model.Producto;
 import es.codelearnacademy.filelab.repository.IProductoRepository;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 public class ProductoService {
@@ -14,34 +16,51 @@ public class ProductoService {
     }
 
     public Optional<Producto> maximoPrecio() {
-        throw new UnsupportedOperationException("Función no implementada");
+        return repository.findAll().stream()
+                .max(Comparator.comparingDouble(Producto::precio));
     }
 
     public Optional<Producto> minimoPrecio() {
-        throw new UnsupportedOperationException("Función no implementada");
+        return repository.findAll().stream()
+                .min(Comparator.comparingDouble(Producto::precio));
     }
 
     public Optional<Producto> maximoStock() {
-        throw new UnsupportedOperationException("Función no implementada");
+        return repository.findAll().stream()
+                .max(Comparator.comparingInt(Producto::stock));
     }
 
     public Optional<Producto> minimoStock() {
-        throw new UnsupportedOperationException("Función no implementada");
+        return repository.findAll().stream()
+                .min(Comparator.comparingInt(Producto::stock));
     }
 
     public int stockTotal() {
-        throw new UnsupportedOperationException("Función no implementada");
+        return repository.findAll().stream()
+                .mapToInt(Producto::stock)
+                .sum();
     }
 
     public double valorInventario() {
-        throw new UnsupportedOperationException("Función no implementada");
+        return repository.findAll().stream()
+                .mapToDouble(producto -> producto.precio() * producto.stock())
+                .sum();
     }
 
     public List<Producto> sinStock() {
-        throw new UnsupportedOperationException("Función no implementada");
+        return repository.findAll().stream()
+                .filter(producto -> producto.stock() == 0)
+                .toList();
     }
 
     public List<Producto> buscar(String texto) {
-        throw new UnsupportedOperationException("Función no implementada");
+        if (texto == null) {
+            return List.of();
+        }
+        var buscado = texto.toLowerCase(Locale.ROOT);
+        return repository.findAll().stream()
+                .filter(producto -> producto.nombre() != null
+                        && producto.nombre().toLowerCase(Locale.ROOT).contains(buscado))
+                .toList();
     }
 }

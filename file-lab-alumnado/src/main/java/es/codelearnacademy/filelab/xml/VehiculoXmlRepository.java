@@ -21,16 +21,18 @@ public class VehiculoXmlRepository
 
     @Override
     protected String getId(Vehiculo vehiculo) {
-        throw new UnsupportedOperationException("Función no implementada");
+        return vehiculo.matricula();
     }
 
     @Override
     protected List<Vehiculo> readAll() throws IOException {
-        throw new UnsupportedOperationException("Función no implementada");
+        var documento = mapper.readValue(path.toFile(), DocumentoVehiculos.class);
+        var vehiculos = documento.getVehiculos();
+        return vehiculos == null ? List.of() : vehiculos;
     }
 
     @Override
     protected void writeAll(List<Vehiculo> vehiculos) throws IOException {
-        throw new UnsupportedOperationException("Función no implementada");
+        mapper.writeValue(path.toFile(), new DocumentoVehiculos(vehiculos));
     }
 }

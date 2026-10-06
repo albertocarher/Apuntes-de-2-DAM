@@ -5,38 +5,44 @@ import java.nio.file.Path;
 public class PathService {
 
     public Path crear(String primero, String... partes) {
-        throw new UnsupportedOperationException("Función no implementada");
+        return Path.of(primero, partes);
     }
 
     public String nombre(Path path) {
-        throw new UnsupportedOperationException("Función no implementada");
+        var nombre = path.getFileName();
+        return nombre == null ? "" : nombre.toString();
     }
 
     public Path padre(Path path) {
-        throw new UnsupportedOperationException("Función no implementada");
+        return path.getParent();
     }
 
     public Path absoluto(Path path) {
-        throw new UnsupportedOperationException("Función no implementada");
+        return path.toAbsolutePath();
     }
 
     public Path normalizar(Path path) {
-        throw new UnsupportedOperationException("Función no implementada");
+        return path.normalize();
     }
 
     public boolean esAbsoluto(Path path) {
-        throw new UnsupportedOperationException("Función no implementada");
+        return path.isAbsolute();
     }
 
     public Path resolver(Path base, String otro) {
-        throw new UnsupportedOperationException("Función no implementada");
+        return base.resolve(otro);
     }
 
     public Path relativizar(Path base, Path destino) {
-        throw new UnsupportedOperationException("Función no implementada");
+        return base.relativize(destino);
     }
 
     public String extension(Path path) {
-        throw new UnsupportedOperationException("Función no implementada");
+        var nombre = nombre(path);
+        int punto = nombre.lastIndexOf('.');
+        if (punto <= 0 || punto == nombre.length() - 1) {
+            return "";
+        }
+        return nombre.substring(punto + 1);
     }
 }

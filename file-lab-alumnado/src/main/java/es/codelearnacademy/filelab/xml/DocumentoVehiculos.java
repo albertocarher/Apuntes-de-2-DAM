@@ -22,10 +22,10 @@ public class DocumentoVehiculos {
     }
 
     public List<Vehiculo> getVehiculos() {
-        throw new UnsupportedOperationException("Función no implementada");
+        return vehiculos;
     }
 
     public void setVehiculos(List<Vehiculo> vehiculos) {
-        throw new UnsupportedOperationException("Función no implementada");
+        this.vehiculos = vehiculos;
     }
 }
