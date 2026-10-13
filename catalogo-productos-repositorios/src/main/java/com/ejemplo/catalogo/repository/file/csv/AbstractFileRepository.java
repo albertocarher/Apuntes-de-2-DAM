@@ -41,45 +41,27 @@ public abstract class AbstractFileRepository <T extends Identificable<ID>, ID>
 
     @Override
     public Optional<T> findById(ID id)  {
-        return
-                list.stream
-                        ().filter(p ->
-                        p.id
-                                ().equals(id)).findFirst();
+        return list.stream().filter(p -> p.id().equals(id)).findFirst();
     }
 
     @Override
     public void create(T element) {
-        if (element == null ||
-                element.id
-                        ()  == null) {
+        if (element == null || element.id()  == null) {
             return;
         }
-        if (
-                list.stream
-                        ().anyMatch(p ->
-                        p.id
-                                () ==
-                                element.id
-                                        ()))
-            throw new IllegalArgumentException("Id duplicado: " +
-                    element.id
-                            ());
+        if (list.stream().anyMatch(p -> p.id() == element.id()))
+            throw new IllegalArgumentException("Id duplicado: " + element.id());
         list.add(element);
         writeAll(list);
     }
 
     @Override
     public boolean update(T element) {
-        if (element == null ||
-                element.id
-                        () == null) {
+        if (element == null || element.id() == null) {
             return false;
         }
         for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).id() ==
-                    element.id
-                            ()) {
+            if (list.get(i).id() == element.id()) {
                 list.set(i, element);
                 writeAll(list);
                 return true;
@@ -90,9 +72,7 @@ public abstract class AbstractFileRepository <T extends Identificable<ID>, ID>
     @Override
     public boolean delete(ID id) {
 
-        boolean removed = list.removeIf(p ->
-                p.id
-                        () == id);
+        boolean removed = list.removeIf(p -> p.id() == id);
         if (removed) {
             writeAll(list);
         }

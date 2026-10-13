@@ -1,0 +1,6 @@
+dni,nombre,email,edad,activo
+12345678A,Ana Lopez,ana@academia.es,21,true
+23456789B,Luis Perez,luis@academia.es,17,true
+34567890C,Marta Diaz,marta@academia.es,35,false
+45678901D,Carlos Ruiz,carlos@academia.es,29,true
+56789012E,Laura Gil,laura@academia.es,16,false

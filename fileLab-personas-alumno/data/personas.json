@@ -1,0 +1,37 @@
+[
+  {
+    "dni": "12345678A",
+    "nombre": "Ana Lopez",
+    "email": "ana@academia.es",
+    "edad": 21,
+    "activo": true
+  },
+  {
+    "dni": "23456789B",
+    "nombre": "Luis Perez",
+    "email": "luis@academia.es",
+    "edad": 17,
+    "activo": true
+  },
+  {
+    "dni": "34567890C",
+    "nombre": "Marta Diaz",
+    "email": "marta@academia.es",
+    "edad": 35,
+    "activo": false
+  },
+  {
+    "dni": "45678901D",
+    "nombre": "Carlos Ruiz",
+    "email": "carlos@academia.es",
+    "edad": 29,
+    "activo": true
+  },
+  {
+    "dni": "56789012E",
+    "nombre": "Laura Gil",
+    "email": "laura@academia.es",
+    "edad": 16,
+    "activo": false
+  }
+]
