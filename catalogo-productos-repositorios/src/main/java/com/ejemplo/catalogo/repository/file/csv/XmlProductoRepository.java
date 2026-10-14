@@ -13,7 +13,7 @@ public class XmlProductoRepository extends AbstractProductoRepository {
     private final ObjectMapper mapper;
     public XmlProductoRepository(Path path) {
         super(path);
-        productos = load();
+        list = load();
         mapper = new ObjectMapper();
     }
 
@@ -32,11 +32,11 @@ public class XmlProductoRepository extends AbstractProductoRepository {
     public List<Producto> load() {
         try {
             ProductosXml productosXml = mapper.readValue(getPath().toFile(), ProductosXml.class);
-            productos.clear();
-            productos.addAll(productosXml.getProductos());
+            list.clear();
+            list.addAll(productosXml.getProductos());
         } catch (IOException e) {
             throw new UncheckedIOException("No se pudo cargar " + getPath(), e);
         }
-        return productos;
+        return list;
     }
 }

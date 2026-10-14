@@ -28,7 +28,6 @@ public abstract class AbstractRepository implements IRepository {
                 Files.createFile(path);
             } catch (IOException e) {
                 throw new RuntimeException(e);
-
             }
         }
     }

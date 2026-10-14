@@ -1,0 +1,1446 @@
+[
+  {
+    "numero": 1,
+    "titulo": "Mostrar los cinco primeros productos por identificador.",
+    "columnas": [
+      "id",
+      "nombre",
+      "precio"
+    ],
+    "filas": [
+      [
+        1,
+        "Teclado Básico",
+        17.68
+      ],
+      [
+        2,
+        "Teclado Plus",
+        17.4
+      ],
+      [
+        3,
+        "Teclado Pro",
+        30.87
+      ],
+      [
+        4,
+        "Teclado Compacto",
+        37.69
+      ],
+      [
+        5,
+        "Teclado Premium",
+        41.44
+      ]
+    ]
+  },
+  {
+    "numero": 2,
+    "titulo": "Ver los cinco vehículos más recientes.",
+    "columnas": [
+      "matricula",
+      "marca",
+      "modelo",
+      "anio"
+    ],
+    "filas": [
+      [
+        "1003BBE",
+        "Toyota",
+        "Prius",
+        2026
+      ],
+      [
+        "1025BBG",
+        "Renault",
+        "Mégane",
+        2026
+      ],
+      [
+        "1047BCI",
+        "Hyundai",
+        "Kona",
+        2026
+      ],
+      [
+        "1069BDK",
+        "Volkswagen",
+        "Polo",
+        2026
+      ],
+      [
+        "1091BEM",
+        "Honda",
+        "CR-V",
+        2026
+      ]
+    ]
+  },
+  {
+    "numero": 3,
+    "titulo": "Filtrar productos cuyo precio sea mayor de 100.",
+    "columnas": [
+      "id",
+      "nombre",
+      "precio"
+    ],
+    "filas": [
+      [
+        100,
+        "Tableta gráfica Premium",
+        251.59
+      ],
+      [
+        99,
+        "Tableta gráfica Compacto",
+        246.71
+      ],
+      [
+        95,
+        "Switch Premium",
+        246.0
+      ],
+      [
+        98,
+        "Tableta gráfica Pro",
+        243.88
+      ],
+      [
+        94,
+        "Switch Compacto",
+        232.78
+      ],
+      [
+        93,
+        "Switch Pro",
+        232.75
+      ],
+      [
+        96,
+        "Tableta gráfica Básico",
+        231.39
+      ],
+      [
+        97,
+        "Tableta gráfica Plus",
+        229.02
+      ]
+    ]
+  },
+  {
+    "numero": 4,
+    "titulo": "Localizar vehículos de la marca Toyota.",
+    "columnas": [
+      "matricula",
+      "marca",
+      "modelo",
+      "anio"
+    ],
+    "filas": [
+      [
+        "1003BBE",
+        "Toyota",
+        "Prius",
+        2026
+      ],
+      [
+        "1006BBH",
+        "Toyota",
+        "RAV4",
+        2025
+      ],
+      [
+        "1009BBK",
+        "Toyota",
+        "Yaris",
+        2024
+      ],
+      [
+        "1002BBD",
+        "Toyota",
+        "RAV4",
+        2019
+      ],
+      [
+        "1005BBG",
+        "Toyota",
+        "Yaris",
+        2018
+      ],
+      [
+        "1008BBJ",
+        "Toyota",
+        "Corolla",
+        2017
+      ],
+      [
+        "1001BBC",
+        "Toyota",
+        "Yaris",
+        2012
+      ],
+      [
+        "1004BBF",
+        "Toyota",
+        "Corolla",
+        2011
+      ]
+    ]
+  },
+  {
+    "numero": 5,
+    "titulo": "Buscar productos cuyo nombre contenga Pro.",
+    "columnas": [
+      "id",
+      "nombre",
+      "precio"
+    ],
+    "filas": [
+      [
+        3,
+        "Teclado Pro",
+        30.87
+      ],
+      [
+        8,
+        "Ratón Pro",
+        39.16
+      ],
+      [
+        13,
+        "Monitor Pro",
+        49.36
+      ],
+      [
+        18,
+        "Auriculares Pro",
+        66.95
+      ],
+      [
+        23,
+        "Webcam Pro",
+        69.61
+      ],
+      [
+        28,
+        "Micrófono Pro",
+        78.98
+      ],
+      [
+        33,
+        "Altavoz Pro",
+        100.0
+      ],
+      [
+        38,
+        "Impresora Pro",
+        101.77
+      ]
+    ]
+  },
+  {
+    "numero": 6,
+    "titulo": "Mostrar productos con precio comprendido entre 20 y 50.",
+    "columnas": [
+      "id",
+      "nombre",
+      "precio"
+    ],
+    "filas": [
+      [
+        6,
+        "Ratón Básico",
+        24.12
+      ],
+      [
+        7,
+        "Ratón Plus",
+        30.8
+      ],
+      [
+        3,
+        "Teclado Pro",
+        30.87
+      ],
+      [
+        11,
+        "Monitor Básico",
+        36.58
+      ],
+      [
+        4,
+        "Teclado Compacto",
+        37.69
+      ],
+      [
+        8,
+        "Ratón Pro",
+        39.16
+      ],
+      [
+        12,
+        "Monitor Plus",
+        41.43
+      ],
+      [
+        5,
+        "Teclado Premium",
+        41.44
+      ]
+    ]
+  },
+  {
+    "numero": 7,
+    "titulo": "Listar marcas diferentes sin repetir.",
+    "columnas": [
+      "marca"
+    ],
+    "filas": [
+      [
+        "Ford"
+      ],
+      [
+        "Honda"
+      ],
+      [
+        "Hyundai"
+      ],
+      [
+        "Kia"
+      ],
+      [
+        "Opel"
+      ],
+      [
+        "Peugeot"
+      ],
+      [
+        "Renault"
+      ],
+      [
+        "SEAT"
+      ],
+      [
+        "Toyota"
+      ],
+      [
+        "Volkswagen"
+      ]
+    ]
+  },
+  {
+    "numero": 8,
+    "titulo": "Seleccionar vehículos de dos marcas concretas.",
+    "columnas": [
+      "matricula",
+      "marca",
+      "modelo",
+      "anio"
+    ],
+    "filas": [
+      [
+        "1031BCM",
+        "Ford",
+        "Puma",
+        2024
+      ],
+      [
+        "1034BCP",
+        "Ford",
+        "Kuga",
+        2023
+      ],
+      [
+        "1037BCS",
+        "Ford",
+        "Fiesta",
+        2022
+      ],
+      [
+        "1030BCL",
+        "Ford",
+        "Kuga",
+        2017
+      ],
+      [
+        "1033BCO",
+        "Ford",
+        "Fiesta",
+        2016
+      ],
+      [
+        "1036BCR",
+        "Ford",
+        "Focus",
+        2015
+      ],
+      [
+        "1039BCU",
+        "Ford",
+        "Puma",
+        2014
+      ],
+      [
+        "1032BCN",
+        "Ford",
+        "Focus",
+        2009
+      ]
+    ]
+  },
+  {
+    "numero": 9,
+    "titulo": "Contar cuántos productos existen.",
+    "columnas": [
+      "total_productos"
+    ],
+    "filas": [
+      [
+        100
+      ]
+    ]
+  },
+  {
+    "numero": 10,
+    "titulo": "Contar cuántos vehículos están registrados.",
+    "columnas": [
+      "total_vehiculos"
+    ],
+    "filas": [
+      [
+        100
+      ]
+    ]
+  },
+  {
+    "numero": 11,
+    "titulo": "Obtener precio mínimo, máximo y medio.",
+    "columnas": [
+      "minimo",
+      "maximo",
+      "media"
+    ],
+    "filas": [
+      [
+        17.4,
+        251.59,
+        133.86
+      ]
+    ]
+  },
+  {
+    "numero": 12,
+    "titulo": "Contar las marcas diferentes.",
+    "columnas": [
+      "marcas_diferentes"
+    ],
+    "filas": [
+      [
+        10
+      ]
+    ]
+  },
+  {
+    "numero": 13,
+    "titulo": "Calcular la suma de todos los precios del catálogo.",
+    "columnas": [
+      "suma_precios"
+    ],
+    "filas": [
+      [
+        13385.67
+      ]
+    ]
+  },
+  {
+    "numero": 14,
+    "titulo": "Contar productos con precio de al menos 50.",
+    "columnas": [
+      "productos_caros"
+    ],
+    "filas": [
+      [
+        88
+      ]
+    ]
+  },
+  {
+    "numero": 15,
+    "titulo": "Contar vehículos de cada marca.",
+    "columnas": [
+      "marca",
+      "cantidad"
+    ],
+    "filas": [
+      [
+        "Ford",
+        10
+      ],
+      [
+        "Honda",
+        10
+      ],
+      [
+        "Hyundai",
+        10
+      ],
+      [
+        "Kia",
+        10
+      ],
+      [
+        "Opel",
+        10
+      ],
+      [
+        "Peugeot",
+        10
+      ],
+      [
+        "Renault",
+        10
+      ],
+      [
+        "SEAT",
+        10
+      ],
+      [
+        "Toyota",
+        10
+      ],
+      [
+        "Volkswagen",
+        10
+      ]
+    ]
+  },
+  {
+    "numero": 16,
+    "titulo": "Encontrar los años de fabricación con más vehículos.",
+    "columnas": [
+      "anio",
+      "cantidad"
+    ],
+    "filas": [
+      [
+        2026,
+        5
+      ],
+      [
+        2025,
+        5
+      ],
+      [
+        2024,
+        5
+      ],
+      [
+        2019,
+        5
+      ],
+      [
+        2018,
+        5
+      ],
+      [
+        2017,
+        5
+      ],
+      [
+        2016,
+        5
+      ],
+      [
+        2012,
+        5
+      ],
+      [
+        2011,
+        5
+      ],
+      [
+        2010,
+        5
+      ]
+    ]
+  },
+  {
+    "numero": 17,
+    "titulo": "Calcular año más antiguo y reciente por marca.",
+    "columnas": [
+      "marca",
+      "anio_min",
+      "anio_max"
+    ],
+    "filas": [
+      [
+        "Ford",
+        2007,
+        2024
+      ],
+      [
+        "Honda",
+        2009,
+        2026
+      ],
+      [
+        "Hyundai",
+        2005,
+        2026
+      ],
+      [
+        "Kia",
+        2008,
+        2025
+      ],
+      [
+        "Opel",
+        2005,
+        2022
+      ],
+      [
+        "Peugeot",
+        2008,
+        2025
+      ],
+      [
+        "Renault",
+        2005,
+        2026
+      ],
+      [
+        "SEAT",
+        2006,
+        2023
+      ],
+      [
+        "Toyota",
+        2005,
+        2026
+      ],
+      [
+        "Volkswagen",
+        2005,
+        2026
+      ]
+    ]
+  },
+  {
+    "numero": 18,
+    "titulo": "Contar productos por tramos de precio.",
+    "columnas": [
+      "tramo",
+      "cantidad"
+    ],
+    "filas": [
+      [
+        "Menos de 25",
+        3
+      ],
+      [
+        "25 a menos de 75",
+        20
+      ],
+      [
+        "75 o más",
+        77
+      ]
+    ]
+  },
+  {
+    "numero": 19,
+    "titulo": "Filtrar marcas con al menos cinco vehículos.",
+    "columnas": [
+      "marca",
+      "cantidad"
+    ],
+    "filas": [
+      [
+        "Ford",
+        10
+      ],
+      [
+        "Honda",
+        10
+      ],
+      [
+        "Hyundai",
+        10
+      ],
+      [
+        "Kia",
+        10
+      ],
+      [
+        "Opel",
+        10
+      ],
+      [
+        "Peugeot",
+        10
+      ],
+      [
+        "Renault",
+        10
+      ],
+      [
+        "SEAT",
+        10
+      ],
+      [
+        "Toyota",
+        10
+      ],
+      [
+        "Volkswagen",
+        10
+      ]
+    ]
+  },
+  {
+    "numero": 20,
+    "titulo": "Mostrar años en los que hay al menos tres vehículos.",
+    "columnas": [
+      "anio",
+      "cantidad"
+    ],
+    "filas": [
+      [
+        2026,
+        5
+      ],
+      [
+        2025,
+        5
+      ],
+      [
+        2024,
+        5
+      ],
+      [
+        2019,
+        5
+      ],
+      [
+        2018,
+        5
+      ],
+      [
+        2017,
+        5
+      ],
+      [
+        2016,
+        5
+      ],
+      [
+        2012,
+        5
+      ],
+      [
+        2011,
+        5
+      ],
+      [
+        2010,
+        5
+      ]
+    ]
+  },
+  {
+    "numero": 21,
+    "titulo": "Mostrar el precio medio por familia, usando la primera palabra del nombre.",
+    "columnas": [
+      "familia",
+      "productos",
+      "media"
+    ],
+    "filas": [
+      [
+        "Disco",
+        10,
+        137.41
+      ],
+      [
+        "Adaptador",
+        5,
+        182.92
+      ],
+      [
+        "Alfombrilla",
+        5,
+        205.81
+      ],
+      [
+        "Altavoz",
+        5,
+        96.34
+      ],
+      [
+        "Auriculares",
+        5,
+        64.01
+      ],
+      [
+        "Cable",
+        5,
+        172.13
+      ],
+      [
+        "Escáner",
+        5,
+        118.39
+      ],
+      [
+        "Hub",
+        5,
+        161.57
+      ],
+      [
+        "Impresora",
+        5,
+        107.2
+      ],
+      [
+        "Memoria",
+        5,
+        140.04
+      ],
+      [
+        "Micrófono",
+        5,
+        81.18
+      ],
+      [
+        "Monitor",
+        5,
+        47.7
+      ]
+    ]
+  },
+  {
+    "numero": 22,
+    "titulo": "Mostrar familias que tengan al menos cuatro productos y precio medio superior a 35.",
+    "columnas": [
+      "familia",
+      "productos",
+      "media"
+    ],
+    "filas": [
+      [
+        "Tableta",
+        5,
+        240.52
+      ],
+      [
+        "Switch",
+        5,
+        232.28
+      ],
+      [
+        "Router",
+        5,
+        217.95
+      ],
+      [
+        "Alfombrilla",
+        5,
+        205.81
+      ],
+      [
+        "Soporte",
+        5,
+        194.5
+      ],
+      [
+        "Adaptador",
+        5,
+        182.92
+      ],
+      [
+        "Cable",
+        5,
+        172.13
+      ],
+      [
+        "Hub",
+        5,
+        161.57
+      ],
+      [
+        "Memoria",
+        5,
+        140.04
+      ],
+      [
+        "Disco",
+        10,
+        137.41
+      ],
+      [
+        "Escáner",
+        5,
+        118.39
+      ],
+      [
+        "Impresora",
+        5,
+        107.2
+      ],
+      [
+        "Altavoz",
+        5,
+        96.34
+      ],
+      [
+        "Micrófono",
+        5,
+        81.18
+      ],
+      [
+        "Webcam",
+        5,
+        70.83
+      ],
+      [
+        "Auriculares",
+        5,
+        64.01
+      ],
+      [
+        "Monitor",
+        5,
+        47.7
+      ],
+      [
+        "Ratón",
+        5,
+        39.92
+      ]
+    ]
+  },
+  {
+    "numero": 23,
+    "titulo": "Mostrar productos más caros que la media general.",
+    "columnas": [
+      "id",
+      "nombre",
+      "precio"
+    ],
+    "filas": [
+      [
+        100,
+        "Tableta gráfica Premium",
+        251.59
+      ],
+      [
+        99,
+        "Tableta gráfica Compacto",
+        246.71
+      ],
+      [
+        95,
+        "Switch Premium",
+        246.0
+      ],
+      [
+        98,
+        "Tableta gráfica Pro",
+        243.88
+      ],
+      [
+        94,
+        "Switch Compacto",
+        232.78
+      ],
+      [
+        93,
+        "Switch Pro",
+        232.75
+      ],
+      [
+        96,
+        "Tableta gráfica Básico",
+        231.39
+      ],
+      [
+        97,
+        "Tableta gráfica Plus",
+        229.02
+      ],
+      [
+        92,
+        "Switch Plus",
+        228.84
+      ],
+      [
+        89,
+        "Router Compacto",
+        226.81
+      ]
+    ]
+  },
+  {
+    "numero": 24,
+    "titulo": "Listar los modelos de los vehículos posteriores al año 2020 agrupados por marca.",
+    "columnas": [
+      "marca",
+      "vehiculos_recientes"
+    ],
+    "filas": [
+      [
+        "Kia",
+        4
+      ],
+      [
+        "Ford",
+        3
+      ],
+      [
+        "Honda",
+        3
+      ],
+      [
+        "Peugeot",
+        3
+      ],
+      [
+        "SEAT",
+        3
+      ],
+      [
+        "Toyota",
+        3
+      ],
+      [
+        "Hyundai",
+        2
+      ],
+      [
+        "Opel",
+        2
+      ],
+      [
+        "Renault",
+        2
+      ],
+      [
+        "Volkswagen",
+        2
+      ]
+    ]
+  },
+  {
+    "numero": 25,
+    "titulo": "Detectar los productos empatados con el precio máximo.",
+    "columnas": [
+      "id",
+      "nombre",
+      "precio"
+    ],
+    "filas": [
+      [
+        100,
+        "Tableta gráfica Premium",
+        251.59
+      ]
+    ]
+  },
+  {
+    "numero": 26,
+    "titulo": "Clasificar productos según el precio usando un ranking.",
+    "columnas": [
+      "id",
+      "nombre",
+      "precio",
+      "puesto"
+    ],
+    "filas": [
+      [
+        100,
+        "Tableta gráfica Premium",
+        251.59,
+        1
+      ],
+      [
+        99,
+        "Tableta gráfica Compacto",
+        246.71,
+        2
+      ],
+      [
+        95,
+        "Switch Premium",
+        246.0,
+        3
+      ],
+      [
+        98,
+        "Tableta gráfica Pro",
+        243.88,
+        4
+      ],
+      [
+        94,
+        "Switch Compacto",
+        232.78,
+        5
+      ],
+      [
+        93,
+        "Switch Pro",
+        232.75,
+        6
+      ],
+      [
+        96,
+        "Tableta gráfica Básico",
+        231.39,
+        7
+      ],
+      [
+        97,
+        "Tableta gráfica Plus",
+        229.02,
+        8
+      ],
+      [
+        92,
+        "Switch Plus",
+        228.84,
+        9
+      ],
+      [
+        89,
+        "Router Compacto",
+        226.81,
+        10
+      ]
+    ]
+  },
+  {
+    "numero": 27,
+    "titulo": "Calcular un total acumulado de precios ordenados por identificador.",
+    "columnas": [
+      "id",
+      "nombre",
+      "precio",
+      "acumulado"
+    ],
+    "filas": [
+      [
+        1,
+        "Teclado Básico",
+        17.68,
+        17.68
+      ],
+      [
+        2,
+        "Teclado Plus",
+        17.4,
+        35.08
+      ],
+      [
+        3,
+        "Teclado Pro",
+        30.87,
+        65.95
+      ],
+      [
+        4,
+        "Teclado Compacto",
+        37.69,
+        103.64
+      ],
+      [
+        5,
+        "Teclado Premium",
+        41.44,
+        145.08
+      ],
+      [
+        6,
+        "Ratón Básico",
+        24.12,
+        169.2
+      ],
+      [
+        7,
+        "Ratón Plus",
+        30.8,
+        200.0
+      ],
+      [
+        8,
+        "Ratón Pro",
+        39.16,
+        239.16
+      ],
+      [
+        9,
+        "Ratón Compacto",
+        48.76,
+        287.92
+      ],
+      [
+        10,
+        "Ratón Premium",
+        56.76,
+        344.68
+      ]
+    ]
+  },
+  {
+    "numero": 28,
+    "titulo": "Comparar cada producto con el precio medio de su familia.",
+    "columnas": [
+      "id",
+      "nombre",
+      "familia",
+      "precio",
+      "media_familia"
+    ],
+    "filas": [
+      [
+        75,
+        "Adaptador USB-C Premium",
+        "Adaptador",
+        194.04,
+        182.92
+      ],
+      [
+        74,
+        "Adaptador USB-C Compacto",
+        "Adaptador",
+        191.83,
+        182.92
+      ],
+      [
+        73,
+        "Adaptador USB-C Pro",
+        "Adaptador",
+        187.18,
+        182.92
+      ],
+      [
+        72,
+        "Adaptador USB-C Plus",
+        "Adaptador",
+        173.25,
+        182.92
+      ],
+      [
+        71,
+        "Adaptador USB-C Básico",
+        "Adaptador",
+        168.32,
+        182.92
+      ],
+      [
+        85,
+        "Alfombrilla Premium",
+        "Alfombrilla",
+        220.61,
+        205.81
+      ],
+      [
+        84,
+        "Alfombrilla Compacto",
+        "Alfombrilla",
+        212.66,
+        205.81
+      ],
+      [
+        83,
+        "Alfombrilla Pro",
+        "Alfombrilla",
+        201.13,
+        205.81
+      ],
+      [
+        81,
+        "Alfombrilla Básico",
+        "Alfombrilla",
+        197.55,
+        205.81
+      ],
+      [
+        82,
+        "Alfombrilla Plus",
+        "Alfombrilla",
+        197.12,
+        205.81
+      ],
+      [
+        35,
+        "Altavoz Premium",
+        "Altavoz",
+        113.2,
+        96.34
+      ],
+      [
+        34,
+        "Altavoz Compacto",
+        "Altavoz",
+        105.97,
+        96.34
+      ]
+    ]
+  },
+  {
+    "numero": 29,
+    "titulo": "Mostrar el vehículo más reciente de cada marca, incluyendo empates.",
+    "columnas": [
+      "matricula",
+      "marca",
+      "modelo",
+      "anio"
+    ],
+    "filas": [
+      [
+        "1031BCM",
+        "Ford",
+        "Puma",
+        2024
+      ],
+      [
+        "1091BEM",
+        "Honda",
+        "CR-V",
+        2026
+      ],
+      [
+        "1047BCI",
+        "Hyundai",
+        "Kona",
+        2026
+      ],
+      [
+        "1050BCL",
+        "Kia",
+        "Sportage",
+        2025
+      ],
+      [
+        "1081BEC",
+        "Opel",
+        "Astra",
+        2022
+      ],
+      [
+        "1072BDN",
+        "Peugeot",
+        "208",
+        2025
+      ],
+      [
+        "1025BBG",
+        "Renault",
+        "Mégane",
+        2026
+      ],
+      [
+        "1012BBN",
+        "SEAT",
+        "Ibiza",
+        2023
+      ],
+      [
+        "1003BBE",
+        "Toyota",
+        "Prius",
+        2026
+      ],
+      [
+        "1069BDK",
+        "Volkswagen",
+        "Polo",
+        2026
+      ]
+    ]
+  },
+  {
+    "numero": 30,
+    "titulo": "Resumir por marca el total, año medio y antigüedad, conservando solo marcas con al menos tres vehículos.",
+    "columnas": [
+      "marca",
+      "total",
+      "anio_medio",
+      "mas_antiguo",
+      "mas_reciente"
+    ],
+    "filas": [
+      [
+        "Ford",
+        10,
+        2015.5,
+        2007,
+        2024
+      ],
+      [
+        "Honda",
+        10,
+        2017.5,
+        2009,
+        2026
+      ],
+      [
+        "Hyundai",
+        10,
+        2015.1,
+        2005,
+        2026
+      ],
+      [
+        "Kia",
+        10,
+        2016.9,
+        2008,
+        2025
+      ],
+      [
+        "Opel",
+        10,
+        2013.5,
+        2005,
+        2022
+      ],
+      [
+        "Peugeot",
+        10,
+        2016.1,
+        2008,
+        2025
+      ],
+      [
+        "Renault",
+        10,
+        2015.9,
+        2005,
+        2026
+      ],
+      [
+        "SEAT",
+        10,
+        2014.1,
+        2006,
+        2023
+      ],
+      [
+        "Toyota",
+        10,
+        2016.7,
+        2005,
+        2026
+      ],
+      [
+        "Volkswagen",
+        10,
+        2014.3,
+        2005,
+        2026
+      ]
+    ]
+  }
+]

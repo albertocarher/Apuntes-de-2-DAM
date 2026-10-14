@@ -15,12 +15,12 @@ public class JsonProductoRepository extends AbstractProductoRepository {
     private final ObjectMapper mapper;
     public JsonProductoRepository(Path path) {
         super(path);
-        productos = load();
+        list = writeAll();
         mapper = new ObjectMapper();
     }
 
     @Override
-    public void saveAll(List<Producto> productos) {
+    public void writeAll(List<Producto> productos) {
         Path temporal = null;
         try {
             Path destino = getPath().toAbsolutePath();
@@ -44,18 +44,18 @@ public class JsonProductoRepository extends AbstractProductoRepository {
     }
 
     @Override
-    public List<Producto> load() {
+    public List<Producto> readAll() {
         try {
             List<Producto> leidos = mapper.readValue(
                     getPath().toFile(), new TypeReference<List<Producto>>() {});
             if (leidos == null) {
                 throw new IllegalArgumentException("El JSON debe contener una lista, no null");
             }
-            productos.clear();
-            productos.addAll(leidos);
+            list.clear();
+            list.addAll(leidos);
         } catch (IOException e) {
             throw new UncheckedIOException("No se pudo cargar " + getPath(), e);
         }
-        return productos;
+        return list;
     }
 }

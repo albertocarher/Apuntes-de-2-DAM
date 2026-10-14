@@ -49,8 +49,12 @@ public abstract class AbstractFileRepository <T extends Identificable<ID>, ID>
         if (element == null || element.id()  == null) {
             return;
         }
+<<<<<<< HEAD
         if (list.stream().anyMatch(p -> p.id() == element.id()))
             throw new IllegalArgumentException("Id duplicado: " + element.id());
+=======
+        if (list.stream().anyMatch(p -> p.id() == element.id())) throw new IllegalArgumentException("Id duplicado: " + element.id());
+>>>>>>> 7dfae35 (Se ha realizado varias consultas de las que nos han mandado)
         list.add(element);
         writeAll(list);
     }
