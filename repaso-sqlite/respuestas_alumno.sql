@@ -91,11 +91,26 @@ SELECT anio, COUNT(*) AS cantidad FROM Vehiculos GROUP BY anio HAVING COUNT(*) >
 
 -- EJERCICIO 21
 -- Mostrar el precio medio por familia, usando la primera palabra del nombre.
-SELECT ...;
+SELECT AVG(precio) AS media, SUBSTRING(nombre,1,INSTR(nombre,' ') -1) AS familia
+    CASE
+        WHEN familia = 'Disco' THEN 'Disco'
+        WHEN familia = 'Adaptador' THEN 'Adaptador'
+        WHEN familia = 'Alfombrilla' THEN 'Alfombrilla'
+        WHEN familia = 'Altavoz' THEN 'Altavoz'
+        WHEN familia = 'Auriculares' THEN 'Auriculares'
+        WHEN familia = 'Cable' THEN 'Cable'
+        WHEN familia = 'Escáner' THEN 'Escáner'
+        WHEN familia = 'Hub' THEN 'Hub'
+        WHEN familia = 'Impresora' THEN 'Impresora'
+        WHEN familia = 'Memoria' THEN 'Memoria'
+        WHEN familia = 'Micrófono' THEN 'Micrófono'
+        WHEN familia = 'Monitor' THEN 'Monitor'
+        END AS productos,COUNT(*) AS cantidad FROM Productos GROUP BY productos ORDER BY productos DESC, cantidad DESC;
 
 -- EJERCICIO 22
 -- Mostrar familias que tengan al menos cuatro productos y precio medio superior a 35.
-SELECT ...;
+SELECT SUBSTRING(nombre,1,INSTR(nombre,' ') -1) AS familia, COUNT(*) as cantidad, ROUND(AVG(precio),2) AS media
+FROM Productos GROUP BY familia HAVING cantidad >= 4 AND media > 35 ORDER BY media DESC;
 
 -- EJERCICIO 23
 -- Mostrar productos más caros que la media general.
