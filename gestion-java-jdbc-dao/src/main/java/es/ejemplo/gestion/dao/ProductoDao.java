@@ -22,7 +22,7 @@ public class ProductoDao extends ConexionBD{
 
     public List<Producto> listar() {
         List<Producto> lista = new ArrayList<>();
-        String query = "SELECT id,nombre,precio FROM productos";
+        String query = "SELECT id,nombre,precio FROM Productos";
 
         try (Connection connection = this.obtenerConexion()){
 
@@ -54,7 +54,7 @@ public class ProductoDao extends ConexionBD{
 
     public Optional<Producto> buscarPorId(int id) {
         Optional<Producto> producto = Optional.empty();
-        String sql = "Select id, nombre, precio FROM productos WHERE id = ?";
+        String sql = "Select id, nombre, precio FROM Productos WHERE id = ?";
         try (Connection connection = this.obtenerConexion()) {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, id);
@@ -85,7 +85,7 @@ public class ProductoDao extends ConexionBD{
 
     public boolean actualizar(Producto producto) {
         boolean actualizado = false;
-        String query = "UPDATE productos SET nombre = ?, precio = ? WHERE id = ?";
+        String query = "UPDATE Productos SET nombre = ?, precio = ? WHERE id = ?";
 
         try (Connection connection = this.obtenerConexion()) {
 
@@ -104,7 +104,7 @@ public class ProductoDao extends ConexionBD{
 
     public boolean eliminar(int id) {
         boolean eliminado = false;
-        String query = "DELETE FROM productos WHERE id = ?";
+        String query = "DELETE FROM Productos WHERE id = ?";
 
         try (Connection connection = this.obtenerConexion()) {
 
@@ -120,7 +120,7 @@ public class ProductoDao extends ConexionBD{
 
     public List<Producto> buscarPorNombre(String texto) {
         List<Producto> lista = new ArrayList<>();
-        String query = "SELECT id,nombre,precio FROM productos WHERE nombre LIKE ?";
+        String query = "SELECT id,nombre,precio FROM Productos WHERE nombre LIKE ?";
 
         try (Connection connection = this.obtenerConexion()) {
 
@@ -141,7 +141,7 @@ public class ProductoDao extends ConexionBD{
 
     public List<Producto> buscarPorPrecio(double minimo, double maximo) {
         List<Producto> lista = new ArrayList<>();
-        String query = "SELECT id,nombre,precio FROM productos WHERE precio BETWEEN ? AND ?";
+        String query = "SELECT id,nombre,precio FROM Productos WHERE precio BETWEEN ? AND ?";
 
         try (Connection connection = this.obtenerConexion()) {
 
@@ -162,7 +162,7 @@ public class ProductoDao extends ConexionBD{
 
     public int contar() {
         int total = 0;
-        String query = "SELECT COUNT(*) FROM productos";
+        String query = "SELECT COUNT(*) FROM Productos";
 
         try (Connection connection = this.obtenerConexion()) {
 
@@ -181,7 +181,7 @@ public class ProductoDao extends ConexionBD{
 
     public double precioMedio() {
         double media = 0;
-        String query = "SELECT AVG(precio) FROM productos";
+        String query = "SELECT AVG(precio) FROM Productos";
 
         try (Connection connection = this.obtenerConexion()) {
 
