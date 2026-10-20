@@ -11,13 +11,24 @@ import java.util.List;
 
 public class XmlProductoRepository extends AbstractProductoRepository {
     private final ObjectMapper mapper;
+
+    @Override
+    protected List<Producto> readAll() {
+        return List.of();
+    }
+
+    @Override
+    protected void writeAll(List<Producto> elements) {
+
+    }
+
     public XmlProductoRepository(Path path) {
         super(path);
         list = load();
         mapper = new ObjectMapper();
     }
 
-    @Override
+
     public void saveAll(List<Producto> productos) {
         try {
             ProductosXml productosXml = new ProductosXml();
@@ -28,7 +39,7 @@ public class XmlProductoRepository extends AbstractProductoRepository {
         }
     }
 
-    @Override
+
     public List<Producto> load() {
         try {
             ProductosXml productosXml = mapper.readValue(getPath().toFile(), ProductosXml.class);

@@ -8,15 +8,26 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.*;
 
-public class VehiculoDao extends ConexionBD {
+public class VehiculoDao extends AbstractDao<Vehiculo> {
     private  ConexionBD conexionBD;
 
     public VehiculoDao(String url) {
         super(url);
     }
-    
+
+    @Override
+    Vehiculo mapToClass(ResultSet rs) {
+        try {
+            return new Vehiculo(rs.getString(1), rs.getString(2),rs.getString(3),rs.getInt(4) );
+        } catch (Exception e) {
+            throw new AplicationException(e.getMessage(), e.getCause());
+        }
+    }
+
 
     public List<Vehiculo> listar() {
         List<Vehiculo> lista = new ArrayList<>();
