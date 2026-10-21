@@ -36,7 +36,6 @@ public class ProductoDao extends AbstractDao<Producto> {
     public Optional<Producto> buscarPorId(Integer id) {
         // TODO: SELECT ... WHERE id = ?; ps.setInt(1, id); consultarUno(ps)
         String sql = "SELECT id,nombre,precio FROM Productos WHERE id = ?";
-        List<Producto> productos = null;
         try (Connection con = obtenerConexion();
         PreparedStatement ps = con.prepareStatement(sql)){
             ps.setInt(1, id);
@@ -56,7 +55,7 @@ public class ProductoDao extends AbstractDao<Producto> {
              PreparedStatement ps = connection.prepareStatement(query)) {
 
             ps.setInt(1, id);
-            return ps.executeUpdate() > 0;
+            return ejecutar(ps);
         } catch (SQLException | RuntimeException e) {
             throw new AplicationException(e.getMessage(), e);
         }
@@ -64,11 +63,7 @@ public class ProductoDao extends AbstractDao<Producto> {
 
     public boolean insertar(Producto p) {
         // TODO: validar, INSERT con tres parámetros, ejecutar(ps)
-        if(p == null
-                || p.getId() < 0
-                || p.getNombre() == null
-                || p.getNombre().isBlank()
-                || p.getPrecio() < 0) {
+        if(p == null || p.getId() < 0 || p.getNombre() == null || p.getNombre().isBlank() || p.getPrecio() < 0) {
             return false;
         }
         String sql = "INSERT INTO Productos (id, nombre, precio) VALUES (?, ?, ?)";
@@ -95,7 +90,7 @@ public class ProductoDao extends AbstractDao<Producto> {
             ps.setDouble(2, p.getPrecio());
             ps.setInt(3, p.getId());
 
-            return ps.executeUpdate() > 0;
+            return ejecutar(ps);
         } catch (SQLException | RuntimeException e) {
             throw new AplicationException(e.getMessage(), e);
         }
@@ -103,10 +98,10 @@ public class ProductoDao extends AbstractDao<Producto> {
 
     public List<Producto> buscarPorNombre(String texto) {
         // TODO: búsqueda parcial case-insensitive, ordenada por nombre e id
-        String query = "SELECT id,nombre,precio FROM Productos WHERE LOWER(nombre) LIKE LOWER(?) ORDER BY nombre, id";
+        String query = "SELECT id,nombre,precio FROM Productos WHERE nombre LIKE ? ORDER BY nombre, id";
 
         try (Connection connection = this.obtenerConexion();
-             PreparedStatement ps = connection.prepareStatement(query);) {
+             PreparedStatement ps = connection.prepareStatement(query)) {
 
 
             ps.setString(1, "%" + texto + "%");
@@ -137,7 +132,6 @@ public class ProductoDao extends AbstractDao<Producto> {
 
     public int contar() {
         // TODO: SELECT COUNT(*) y consultarEntero(ps)
-        double media = 0;
         String query = "SELECT COUNT(*) FROM Productos";
 
         try (Connection connection = this.obtenerConexion();

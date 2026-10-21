@@ -1,6 +1,8 @@
 package es.ejemplo.gestion.config;
 
 import es.ejemplo.gestion.exception.AplicationException;
+
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.sql.Connection;
@@ -15,6 +17,14 @@ public  class ConexionBD {
     public ConexionBD(String url) {
         this.url = url;
         Path path = Path.of(url);
+
+        if(!Files.exists(path)) {
+            try{
+                Files.createFile(path);
+            }catch(IOException e){
+                throw new AplicationException(e.getMessage());
+            }
+        }
     }
 
     public Connection obtenerConexion() {

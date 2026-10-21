@@ -68,12 +68,8 @@ public class VehiculoDao extends AbstractDao<Vehiculo> {
 
     public boolean insertar(Vehiculo v) {
         // TODO: validar e insertar
-        if (v == null
-                || v.getMatricula() == null || v.getMatricula().isBlank()
-                || !v.getMatricula().equals(v.getMatricula().toUpperCase())
-                || v.getMarca() == null || v.getMarca().isBlank()
-                || v.getModelo() == null || v.getModelo().isBlank()
-                || v.getAnio() < 1886) {
+        if (v == null || v.getMatricula() == null || v.getMatricula().isBlank() || !v.getMatricula().equals(v.getMatricula().toUpperCase())
+                || v.getMarca() == null || v.getMarca().isBlank() || v.getModelo() == null || v.getModelo().isBlank() || v.getAnio() < 1886) {
             return false;
         }
         String sql = "INSERT INTO Vehiculos (matricula, marca, modelo, anio) VALUES (?, ?, ?, ?)";
@@ -95,7 +91,6 @@ public class VehiculoDao extends AbstractDao<Vehiculo> {
         if (v == null || v.getMatricula() == null || v.getMatricula().isBlank()) {
             return false;
         }
-        // Orden de los parámetros: 1 = marca, 2 = modelo, 3 = anio, 4 = matricula
         String sql = "UPDATE Vehiculos SET marca = ?, modelo = ?, anio = ? WHERE matricula = ?";
         try (Connection con = obtenerConexion();
              PreparedStatement ps = con.prepareStatement(sql)) {
@@ -113,7 +108,7 @@ public class VehiculoDao extends AbstractDao<Vehiculo> {
     public List<Vehiculo> buscarPorMarca(String texto) {
         // TODO: LIKE sin distinguir mayúsculas
         String sql = "SELECT matricula, marca, modelo, anio FROM Vehiculos "
-                + "WHERE LOWER(marca) LIKE LOWER(?) ORDER BY marca, matricula";
+                + "WHERE marca LIKE ? ORDER BY marca, matricula";
         try (Connection con = obtenerConexion();
              PreparedStatement ps = con.prepareStatement(sql)){
             ps.setString(1, "%"+texto+"%");

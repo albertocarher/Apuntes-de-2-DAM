@@ -42,8 +42,12 @@ public abstract class AbstractDao<T> extends ConexionBD {
 
     protected boolean ejecutar(PreparedStatement ps) {
         if (ps == null) return false;
-        try { return ps.executeUpdate() > 0; }
-        catch (SQLException | RuntimeException e) { registrar("ejecutar", e); return false; }
+        try {
+            return ps.executeUpdate() > 0;
+        }
+        catch (SQLException | RuntimeException e) {
+            registrar("ejecutar", e); return false;
+        }
     }
 
     protected int consultarEntero(PreparedStatement ps) {
