@@ -1,0 +1,6 @@
+PRAGMA foreign_keys = ON;
+CREATE TABLE IF NOT EXISTS clientes (id_cliente INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT NOT NULL, email TEXT NOT NULL UNIQUE, telefono TEXT);
+CREATE TABLE IF NOT EXISTS vehiculos (matricula TEXT PRIMARY KEY, marca TEXT NOT NULL, modelo TEXT NOT NULL, anio INTEGER NOT NULL, id_cliente INTEGER NOT NULL REFERENCES clientes(id_cliente) ON DELETE RESTRICT);
+CREATE TABLE IF NOT EXISTS mecanicos (id_mecanico INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT NOT NULL, especialidad TEXT NOT NULL, tarifa_hora NUMERIC NOT NULL CHECK(tarifa_hora >= 0));
+CREATE TABLE IF NOT EXISTS reparaciones (id_reparacion INTEGER PRIMARY KEY AUTOINCREMENT, matricula TEXT NOT NULL REFERENCES vehiculos(matricula) ON DELETE RESTRICT, id_mecanico INTEGER NOT NULL REFERENCES mecanicos(id_mecanico) ON DELETE RESTRICT, descripcion TEXT NOT NULL, fecha TEXT NOT NULL, horas_trabajo NUMERIC NOT NULL CHECK(horas_trabajo >= 0), estado TEXT NOT NULL CHECK(estado IN ('PENDIENTE','EN_PROCESO','FINALIZADA')));
+CREATE TABLE IF NOT EXISTS piezas_reparacion (id_pieza INTEGER PRIMARY KEY AUTOINCREMENT, id_reparacion INTEGER NOT NULL REFERENCES reparaciones(id_reparacion) ON DELETE RESTRICT, nombre TEXT NOT NULL, cantidad INTEGER NOT NULL CHECK(cantidad > 0), precio_unitario NUMERIC NOT NULL CHECK(precio_unitario >= 0));
