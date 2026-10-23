@@ -9,22 +9,26 @@ import java.math.BigDecimal;
 public class PiezaReparacionDao extends ConexionBD {
 
     public PiezaReparacionDao(String url) { super(url); }
-    
+
     public List<PiezaReparacion> listar() {
-        // TODO: implementar según el contrato del README.
         List<PiezaReparacion> piezas = new ArrayList<>();
-        String consulta = "SELECT id_pieza,id_reparacion, nombre, cantidad, precio_unitario FROM piezas_reparacion";
-        try(Connection con = obtenerConexion();
-            PreparedStatement ps = con.prepareStatement(consulta)){
+        String consulta = "SELECT id_pieza, id_reparacion, nombre, cantidad, precio_unitario FROM piezas_reparacion";
 
-            ResultSet rs = ps.executeQuery();
+        try (Connection con = obtenerConexion();
+             PreparedStatement ps = con.prepareStatement(consulta);
+             ResultSet rs = ps.executeQuery()) {
+
             while (rs.next()) {
-                piezas.add(new PiezaReparacion(rs.getInt("id_pieza"), rs.getInt("id_reparacion"), rs.getString("nombre"), rs.getInt("cantidad"), rs.getBigDecimal("precio_unitario")));
+                piezas.add(new PiezaReparacion(
+                        rs.getInt("id_pieza"),
+                        rs.getInt("id_reparacion"),
+                        rs.getString("nombre"),
+                        rs.getInt("cantidad"),
+                        rs.getBigDecimal("precio_unitario")
+                ));
             }
-
         } catch (SQLException e) {
             return List.of();
-
         }
         return piezas;
     }
@@ -47,18 +51,16 @@ public class PiezaReparacionDao extends ConexionBD {
     }
     public int insertar(PiezaReparacion dato) {
         // TODO: implementar según el contrato del README.
-        if(dato == null) {
+        if(dato == null || dato.getCantidad().equals(0)) {
             return 0;
         }
-        String consulta = "INSERT INTO piezas_reparacion (id_pieza,id_reparacion, nombre, cantidad, precio_unitario) VALUES (?,?,?,?,?)";
+        String consulta = "INSERT INTO piezas_reparacion (id_reparacion, nombre, cantidad, precio_unitario) VALUES (?,?,?,?)";
         try(Connection con = obtenerConexion();
             PreparedStatement ps = con.prepareStatement(consulta,Statement.RETURN_GENERATED_KEYS)){
-            ps.setInt(1, dato.getIdPieza());
-            ps.setInt(2, dato.getIdReparacion());
-            ps.setString(3, dato.getNombre());
-            ps.setInt(4, dato.getCantidad());
-            ps.setBigDecimal(5, dato.getPrecioUnitario());
-            ps.executeUpdate();
+            ps.setInt(1, dato.getIdReparacion());
+            ps.setString(2, dato.getNombre());
+            ps.setInt(3, dato.getCantidad());
+            ps.setBigDecimal(4, dato.getPrecioUnitario());
             return ps.executeUpdate();
 
         } catch (SQLException e) {
@@ -101,18 +103,25 @@ public class PiezaReparacionDao extends ConexionBD {
     public List<PiezaReparacion> listarPorReparacion(Integer id) {
         // TODO: implementar según el contrato del README.
         List<PiezaReparacion> piezas = new ArrayList<>();
-        String consulta = "SELECT id_pieza,id_reparacion, nombre, cantidad, precio_unitario FROM piexas_recuperacion WHERE id_reparacion = ?";
-        try(Connection con = obtenerConexion();
-            PreparedStatement ps = con.prepareStatement(consulta)){
+        String consulta = "SELECT id_pieza, id_reparacion, nombre, cantidad, precio_unitario FROM piezas_reparacion WHERE id_reparacion = ?";
+        try (Connection con = obtenerConexion();
+             PreparedStatement ps = con.prepareStatement(consulta)) {
 
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                piezas.add(new PiezaReparacion(rs.getInt("id_pieza"), id, rs.getString("nombre"), rs.getInt("cantidad"), rs.getBigDecimal("precio_unitario")));
+            ps.setInt(1, id);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    piezas.add(new PiezaReparacion(
+                            rs.getInt("id_pieza"),
+                            rs.getInt("id_reparacion"),
+                            rs.getString("nombre"),
+                            rs.getInt("cantidad"),
+                            rs.getBigDecimal("precio_unitario")
+                    ));
+                }
             }
-
         } catch (SQLException e) {
             return List.of();
-
         }
         return piezas;
     }
@@ -135,7 +144,6 @@ public class PiezaReparacionDao extends ConexionBD {
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
             return BigDecimal.ZERO;
         }
 
