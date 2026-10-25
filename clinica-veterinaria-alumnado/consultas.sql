@@ -1,0 +1,12 @@
+-- 1. Todos los clientes alfabéticamente
+
+-- 2. Mascotas de una especie (modifica 'Perro' si deseas)
+-- 3. Mascotas de un cliente
+-- 4. Veterinarios de una especialidad
+-- 5. Consultas programadas
+-- 6a. Mascota y propietario con WHERE
+-- 6b. Mascota y propietario con INNER JOIN
+-- 7. Consultas, mascota, propietario y veterinario
+-- 8. Cantidad de mascotas por cliente, incluidos los de cero mascotas
+-- 9. Importe tratamientos, incluyendo consultas sin tratamientos
+-- 10. Consultas sin tratamientos

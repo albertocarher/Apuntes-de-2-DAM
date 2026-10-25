@@ -31,7 +31,6 @@ public abstract class ConexionBD {
         try {
             Path ruta = Paths.get(archivo);
             if (!ruta.isAbsolute()) {
-                // IntelliJ puede arrancar desde la carpeta padre del módulo Maven.
                 Path cwd = Paths.get("").toAbsolutePath().normalize();
                 Path proyecto = cwd;
                 if (!Files.exists(proyecto.resolve("pom.xml")) &&
