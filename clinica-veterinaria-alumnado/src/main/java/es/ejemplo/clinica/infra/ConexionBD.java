@@ -1,12 +1,11 @@
 package es.ejemplo.clinica.infra;
 
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public abstract class ConexionBD {
     public static String url;
@@ -15,39 +14,23 @@ public abstract class ConexionBD {
         ConexionBD.url = url;
     }
 
-    public static String normalizarUrl(String url) {
+    protected Connection obtenerConexion() throws SQLException {
         if (url == null || !url.startsWith("jdbc:sqlite:")) {
-            return url;
+            throw new IllegalArgumentException("URL SQLite no válida");
         }
-        String archivo = url.substring("jdbc:sqlite:".length());
-        if (archivo.isBlank() || archivo.equals(":memory:") || archivo.startsWith("file:")) {
-            return url;
+        String ruta = url.substring("jdbc:sqlite:".length());
+        if (!ruta.equals(":memory:") && !ruta.startsWith("file:")
+                && !Files.isRegularFile(Path.of(ruta))) {
+            throw new IllegalArgumentException("La base de datos no existe: " + ruta);
         }
-        try {
-            Path ruta = Paths.get(archivo);
-            if (!ruta.isAbsolute()) {
-                Path cwd = Paths.get("").toAbsolutePath().normalize();
-                Path proyecto = cwd;
-                if (!Files.exists(proyecto.resolve("pom.xml")) &&
-                        Files.exists(proyecto.resolve("taller-mecanico-alumnado/pom.xml"))) {
-                    proyecto = proyecto.resolve("taller-mecanico-alumnado");
-                }
-                ruta = proyecto.resolve(ruta);
-            }
-            ruta = ruta.toAbsolutePath().normalize();
-            Path parent = ruta.getParent();
-            if (parent != null) Files.createDirectories(parent);
-            return "jdbc:sqlite:" + ruta;
-        } catch (IOException | RuntimeException e) {
-            return url;
+        Connection cn = DriverManager.getConnection(url);
+        try (Statement st = cn.createStatement()) {
+            st.execute("PRAGMA foreign_keys = ON");
+        } catch (SQLException e) {
+            cn.close();
+            throw e;
         }
-    }
-
-    public static Connection obtenerConexion() {
-        try {
-            return DriverManager.getConnection(normalizarUrl(url));
-        } catch (SQLException ex) {
-            throw new RuntimeException("Error al obtener conexion con la base de datos", ex);
-        }
+        return cn;
     }
 }
+
