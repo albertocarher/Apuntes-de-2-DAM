@@ -7,7 +7,7 @@
 -- 4. Veterinarios de una especialidad
     SELECT id, nombre, especialidad, tarifa_hora FROM veterinarios WHERE especialidad = ?;
 -- 5. Consultas programadas
-    
+    SELECT id, id_mascota, id_veterinario, fecha, horas, estado FROM
 -- 6a. Mascota y propietario con WHERE
 
 -- 6b. Mascota y propietario con INNER JOIN
