@@ -44,14 +44,13 @@ public final class VeterinarioDao extends ConexionBD implements IVeterinarioDao 
                 }
             }
         } catch (SQLException e) {
-            throw new DaoException("Error al buscar el veterinario " + id, e);
+            throw new DaoException(e.getMessage(), e);
         }
         return Optional.empty();
     }
 
     @Override
     public int insertar(Veterinario entidad) {
-        Objects.requireNonNull(entidad, "entidad");
         String consulta = "INSERT INTO veterinarios (nombre, especialidad, tarifa_hora) VALUES (?, ?, ?)";
         try (Connection con = obtenerConexion();
              PreparedStatement ps = con.prepareStatement(consulta, Statement.RETURN_GENERATED_KEYS)) {
@@ -66,13 +65,12 @@ public final class VeterinarioDao extends ConexionBD implements IVeterinarioDao 
             }
             throw new SQLException("No se obtuvo el identificador generado");
         } catch (SQLException e) {
-            throw new DaoException("Error al insertar el veterinario", e);
+            throw new DaoException(e.getMessage(), e);
         }
     }
 
     @Override
     public int actualizar(Veterinario entidad) {
-        Objects.requireNonNull(entidad, "entidad");
         if (entidad.getId() == null) {
             throw new IllegalArgumentException("El identificador es obligatorio para actualizar");
         }
@@ -85,20 +83,19 @@ public final class VeterinarioDao extends ConexionBD implements IVeterinarioDao 
             ps.setObject(4, entidad.getId());
             return ps.executeUpdate();
         } catch (SQLException e) {
-            throw new DaoException("Error al actualizar el veterinario", e);
+            throw new DaoException(e.getMessage(), e);
         }
     }
 
     @Override
     public int eliminar(Integer id) {
-        Objects.requireNonNull(id, "id");
         String consulta = "DELETE FROM veterinarios WHERE id = ?";
         try (Connection con = obtenerConexion();
              PreparedStatement ps = con.prepareStatement(consulta)) {
             ps.setInt(1, id);
             return ps.executeUpdate();
         } catch (SQLException e) {
-            throw new DaoException("Error al eliminar el veterinario " + id, e);
+            throw new DaoException(e.getMessage(), e);
         }
     }
 
@@ -116,7 +113,7 @@ public final class VeterinarioDao extends ConexionBD implements IVeterinarioDao 
                 }
             }
         } catch (SQLException e) {
-            throw new DaoException("Error al buscar veterinarios por especialidad", e);
+            throw new DaoException(e.getMessage(), e);
         }
         return lista;
     }

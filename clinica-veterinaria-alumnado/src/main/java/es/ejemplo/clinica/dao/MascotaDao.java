@@ -23,7 +23,7 @@ public final class MascotaDao extends ConexionBD implements IMascotaDao {
                         rs.getString("raza"), rs.getString("fecha_nacimiento"), rs.getInt("id_cliente")));
             }
         } catch (SQLException e) {
-            throw new DaoException("Error al listar mascotas", e);
+            throw new DaoException(e.getMessage(), e);
         }
         return lista;
     }
@@ -44,14 +44,13 @@ public final class MascotaDao extends ConexionBD implements IMascotaDao {
                 }
             }
         } catch (SQLException e) {
-            throw new DaoException("Error al buscar la mascota " + id, e);
+            throw new DaoException(e.getMessage(), e);
         }
         return Optional.empty();
     }
 
     @Override
     public int insertar(Mascota entidad) {
-        Objects.requireNonNull(entidad, "entidad");
         String consulta = "INSERT INTO mascotas (nombre, especie, raza, fecha_nacimiento, id_cliente) VALUES (?, ?, ?, ?, ?)";
         try (Connection con = obtenerConexion();
              PreparedStatement ps = con.prepareStatement(consulta, Statement.RETURN_GENERATED_KEYS)) {
@@ -68,13 +67,12 @@ public final class MascotaDao extends ConexionBD implements IMascotaDao {
             }
             throw new SQLException("No se obtuvo el identificador generado");
         } catch (SQLException e) {
-            throw new DaoException("Error al insertar la mascota", e);
+            throw new DaoException(e.getMessage(), e);
         }
     }
 
     @Override
     public int actualizar(Mascota entidad) {
-        Objects.requireNonNull(entidad, "entidad");
         if (entidad.getId() == null) {
             throw new IllegalArgumentException("El identificador es obligatorio para actualizar");
         }
@@ -89,20 +87,19 @@ public final class MascotaDao extends ConexionBD implements IMascotaDao {
             ps.setObject(6, entidad.getId());
             return ps.executeUpdate();
         } catch (SQLException e) {
-            throw new DaoException("Error al actualizar la mascota", e);
+            throw new DaoException(e.getMessage(), e);
         }
     }
 
     @Override
     public int eliminar(Integer id) {
-        Objects.requireNonNull(id, "id");
         String consulta = "DELETE FROM mascotas WHERE id = ?";
         try (Connection con = obtenerConexion();
              PreparedStatement ps = con.prepareStatement(consulta)) {
             ps.setInt(1, id);
             return ps.executeUpdate();
         } catch (SQLException e) {
-            throw new DaoException("Error al eliminar la mascota " + id, e);
+            throw new DaoException(e.getMessage(), e);
         }
     }
 
@@ -120,7 +117,7 @@ public final class MascotaDao extends ConexionBD implements IMascotaDao {
                 }
             }
         } catch (SQLException e) {
-            throw new DaoException("Error al buscar mascotas por cliente", e);
+            throw new DaoException(e.getMessage(), e);
         }
         return lista;
     }
@@ -139,7 +136,7 @@ public final class MascotaDao extends ConexionBD implements IMascotaDao {
                 }
             }
         } catch (SQLException e) {
-            throw new DaoException("Error al listar mascotas por especie", e);
+            throw new DaoException(e.getMessage(), e);
         }
         return lista;
     }

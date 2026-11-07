@@ -23,7 +23,7 @@ public final class ClienteDao extends ConexionBD implements IClienteDao {
                         rs.getString("email"), rs.getString("telefono")));
             }
         } catch (SQLException e) {
-            throw new DaoException("Error al listar clientes", e);
+            throw new DaoException(e.getMessage(), e);
         }
         return clientes;
     }
@@ -44,14 +44,13 @@ public final class ClienteDao extends ConexionBD implements IClienteDao {
                 }
             }
         } catch (SQLException e) {
-            throw new DaoException("Error al buscar el cliente " + id, e);
+            throw new DaoException(e.getMessage(), e);
         }
         return Optional.empty();
     }
 
     @Override
     public int insertar(Cliente entidad) {
-        Objects.requireNonNull(entidad, "entidad");
         String consulta = "INSERT INTO clientes (nombre, email, telefono) VALUES (?, ?, ?)";
         try (Connection con = obtenerConexion();
              PreparedStatement ps = con.prepareStatement(consulta, Statement.RETURN_GENERATED_KEYS)) {
@@ -66,13 +65,12 @@ public final class ClienteDao extends ConexionBD implements IClienteDao {
             }
             throw new SQLException("No se obtuvo el identificador generado");
         } catch (SQLException e) {
-            throw new DaoException("Error al insertar el cliente", e);
+            throw new DaoException(e.getMessage(), e);
         }
     }
 
     @Override
     public int actualizar(Cliente entidad) {
-        Objects.requireNonNull(entidad, "entidad");
         if (entidad.getId() == null) {
             throw new IllegalArgumentException("El identificador es obligatorio para actualizar");
         }
@@ -85,20 +83,19 @@ public final class ClienteDao extends ConexionBD implements IClienteDao {
             ps.setObject(4, entidad.getId());
             return ps.executeUpdate();
         } catch (SQLException e) {
-            throw new DaoException("Error al actualizar el cliente", e);
+            throw new DaoException(e.getMessage(), e);
         }
     }
 
     @Override
     public int eliminar(Integer id) {
-        Objects.requireNonNull(id, "id");
         String consulta = "DELETE FROM clientes WHERE id = ?";
         try (Connection con = obtenerConexion();
              PreparedStatement ps = con.prepareStatement(consulta)) {
             ps.setInt(1, id);
             return ps.executeUpdate();
         } catch (SQLException e) {
-            throw new DaoException("Error al eliminar el cliente " + id, e);
+            throw new DaoException(e.getMessage(), e);
         }
     }
 }
