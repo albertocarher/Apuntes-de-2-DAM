@@ -28,7 +28,11 @@ public class AutorDao implements AutoCloseable {
     private void registrar(String metodo, Exception ex) {
         LOG.log(Level.WARNING, metodo + " no se pudo completar: " + ex.getMessage());
     }
-    
+
+    /**
+     * Funcion que lista los autores
+     * @return Devuelve lista con autores
+     */
     public List<Autor> listar() {
         // TODO: implementar con EntityManager, JPQL y rollback cuando proceda.
         try (var em = managerFactory.createEntityManager()) {
@@ -44,6 +48,11 @@ public class AutorDao implements AutoCloseable {
         }
     }
 
+    /**
+     * Funcion que busca un autor por su id
+     * @param id Identificador del autor
+     * @return Devuelve el libro correspondiente al id
+     */
     public Optional<Autor> buscarPorId(Integer id) {
         try (var em = managerFactory.createEntityManager()) {
             return Optional.ofNullable(em.find(AutorEntity.class, id))
@@ -54,6 +63,11 @@ public class AutorDao implements AutoCloseable {
         }
     }
 
+    /**
+     * Funcion que inserta un autor en la base de datos
+     * @param dato Autor a insertar
+     * @return Se devuelve el autor introducido en la bbdd
+     */
     public int insertar(Autor dato) {
         if (!validar(dato)) {
             return 0;
@@ -76,6 +90,11 @@ public class AutorDao implements AutoCloseable {
         }
     }
 
+    /**
+     * Funcion que actualiza la informacion de un autor
+     * @param dato Informacion del autor a actualizar
+     * @return La informacion del autor actualizada
+     */
     public int actualizar(Autor dato) {
         if (!validar(dato) || dato.getIdAutor() == null) {
             return 0;
@@ -102,6 +121,11 @@ public class AutorDao implements AutoCloseable {
         }
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public int eliminar(Integer id) {
         try (var em = managerFactory.createEntityManager()) {
             var tx = em.getTransaction();
@@ -187,7 +211,5 @@ public class AutorDao implements AutoCloseable {
 
     }
 
-
-    
     @Override public void close() {if(ownFactory && managerFactory.isOpen())managerFactory.close();}
 }

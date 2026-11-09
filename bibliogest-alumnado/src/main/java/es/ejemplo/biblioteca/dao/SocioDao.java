@@ -1,27 +1,36 @@
 package es.ejemplo.biblioteca.dao;
-import es.ejemplo.biblioteca.modelo.Socio;
 
+import es.ejemplo.biblioteca.modelo.Socio;
 import es.ejemplo.biblioteca.orm.entity.SocioEntity;
 import es.ejemplo.biblioteca.orm.mapper.SocioMapper;
 import es.ejemplo.biblioteca.orm.config.OrmFactory;
 import jakarta.persistence.EntityManagerFactory;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
 public class SocioDao implements AutoCloseable {
-    private static final Logger LOG=Logger.getLogger(SocioDao.class.getName());
+    private static final Logger LOG = Logger.getLogger(SocioDao.class.getName());
     private final EntityManagerFactory managerFactory;
     private final boolean ownFactory;
-    
-    public SocioDao(String url) {managerFactory=OrmFactory.crear(url);ownFactory=true;}
-    
-    public SocioDao(EntityManagerFactory factory) {managerFactory=factory;ownFactory=false;}
-    private void registrar(String metodo,Exception ex) {LOG.log(Level.WARNING,metodo+" no se pudo completar: "+ex.getMessage());}
-    
+
+    public SocioDao(String url) {
+        managerFactory = OrmFactory.crear(url);
+        ownFactory = true;
+    }
+
+    public SocioDao(EntityManagerFactory factory) {
+        managerFactory = factory;
+        ownFactory = false;
+    }
+
+    private void registrar(String metodo, Exception ex) {
+        LOG.log(Level.WARNING, metodo + " no se pudo completar: " + ex.getMessage());
+    }
+
     public List<Socio> listar() {
-        // TODO: implementar con EntityManager, JPQL y rollback cuando proceda.
         try (var em = managerFactory.createEntityManager()) {
             return em.createQuery(
                             "select s from SocioEntity s order by s.idSocio",
@@ -34,9 +43,8 @@ public class SocioDao implements AutoCloseable {
             return List.of();
         }
     }
-    
+
     public Optional<Socio> buscarPorId(Integer id) {
-        // TODO: implementar con EntityManager, JPQL y rollback cuando proceda.
         try (var em = managerFactory.createEntityManager()) {
             return Optional.ofNullable(em.find(SocioEntity.class, id))
                     .map(SocioMapper::toDomain);
@@ -45,9 +53,8 @@ public class SocioDao implements AutoCloseable {
             return Optional.empty();
         }
     }
-    
+
     public int insertar(Socio dato) {
-        // TODO: implementar con EntityManager, JPQL y rollback cuando proceda.
         if (!validar(dato)) {
             return 0;
         }
@@ -67,11 +74,9 @@ public class SocioDao implements AutoCloseable {
                 return 0;
             }
         }
-
     }
-    
+
     public int actualizar(Socio dato) {
-        // TODO: implementar con EntityManager, JPQL y rollback cuando proceda.
         if (!validar(dato) || dato.getIdSocio() == null) {
             return 0;
         }
@@ -97,11 +102,9 @@ public class SocioDao implements AutoCloseable {
                 return 0;
             }
         }
-
     }
-    
+
     public int eliminar(Integer id) {
-        // TODO: implementar con EntityManager, JPQL y rollback cuando proceda.
         try (var em = managerFactory.createEntityManager()) {
             var tx = em.getTransaction();
             try {
@@ -120,20 +123,18 @@ public class SocioDao implements AutoCloseable {
                 return 0;
             }
         }
-
     }
 
     private boolean validar(Socio dato) {
         return dato != null && dato.getNombre() != null && !dato.getNombre().isBlank() && dato.getEmail() != null && !dato.getEmail().isBlank() && dato.getFechaAlta() != null && dato.getActivo() != null;
     }
-    
+
     public List<Socio> listarActivos() {
-        // TODO: implementar con EntityManager, JPQL y rollback cuando proceda.
         try (var em = managerFactory.createEntityManager()) {
             return em.createQuery(
                             "select s from SocioEntity s where s.activo = :activo order by s.fechaAlta desc, s.idSocio",
                             SocioEntity.class)
-                    .setParameter("activo", Boolean.TRUE)
+                    .setParameter("activo", true)
                     .getResultStream()
                     .map(SocioMapper::toDomain)
                     .toList();
@@ -141,11 +142,9 @@ public class SocioDao implements AutoCloseable {
             registrar("listarActivos", ex);
             return List.of();
         }
-
     }
-    
+
     public Optional<Socio> buscarPorEmail(String email) {
-        // TODO: implementar con EntityManager, JPQL y rollback cuando proceda.
         try (var em = managerFactory.createEntityManager()) {
             return em.createQuery(
                             "select s from SocioEntity s where s.email = :email",
@@ -158,11 +157,9 @@ public class SocioDao implements AutoCloseable {
             registrar("buscarPorEmail", ex);
             return Optional.empty();
         }
-
     }
-    
+
     public List<Socio> listarConPrestamosVencidos(String fecha) {
-        // TODO: implementar con EntityManager, JPQL y rollback cuando proceda.
         try (var em = managerFactory.createEntityManager()) {
             return em.createQuery(
                             "select s from SocioEntity s where exists (select p.idPrestamo from PrestamoEntity p "
@@ -177,11 +174,9 @@ public class SocioDao implements AutoCloseable {
             registrar("listarConPrestamosVencidos", ex);
             return List.of();
         }
-
     }
-    
+
     public List<Socio> sociosSinPrestamos() {
-        // TODO: implementar con EntityManager, JPQL y rollback cuando proceda.
         try (var em = managerFactory.createEntityManager()) {
             return em.createQuery(
                             "select s from SocioEntity s where not exists (select p.idPrestamo from PrestamoEntity p "
@@ -194,35 +189,40 @@ public class SocioDao implements AutoCloseable {
             registrar("sociosSinPrestamos", ex);
             return List.of();
         }
-
     }
-    
+
     public List<Object[]> rankingSocios(int limite) {
-        // TODO: implementar con EntityManager, JPQL y rollback cuando proceda.
         if (limite <= 0) {
             return List.of();
         }
         try (var em = managerFactory.createEntityManager()) {
             return em.createQuery(
-                            "select s.nombre, count(p) from PrestamoEntity p, SocioEntity s "
-                                    + "where p.idSocio = s.idSocio group by s.idSocio, s.nombre "
-                                    + "order by count(p) desc, s.nombre",
-                            Object[].class)
+                            "SELECT s.idSocio, COUNT(p) FROM PrestamoEntity p JOIN SocioEntity s ON p.idSocio = s.idSocio GROUP BY s.idSocio ORDER BY COUNT(p) DESC", Object[].class)
                     .setMaxResults(limite)
                     .getResultList();
         } catch (RuntimeException ex) {
             registrar("rankingSocios", ex);
             return List.of();
         }
-
     }
-    
+
     public List<Object[]> historialSocio(int idSocio) {
-        // TODO: implementar con EntityManager, JPQL y rollback cuando proceda.
-        return List.of();
+        try (var em = managerFactory.createEntityManager()) {
+            return em.createQuery(
+                            "SELECT p, p.libro FROM PrestamoEntity p JOIN FETCH p.libro WHERE p.idSocio = :idSocio ORDER BY p.fechaPrestamo DESC",
+                            Object[].class)
+                    .setParameter("idSocio", idSocio)
+                    .getResultList();
+        } catch (RuntimeException ex) {
+            registrar("historialSocio", ex);
+            return List.of();
+        }
     }
 
-
-    
-    @Override public void close() {if(ownFactory && managerFactory.isOpen())managerFactory.close();}
+    @Override
+    public void close() {
+        if (ownFactory && managerFactory.isOpen()) {
+            managerFactory.close();
+        }
+    }
 }
