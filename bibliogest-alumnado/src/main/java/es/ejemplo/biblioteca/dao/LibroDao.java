@@ -258,12 +258,29 @@ public class LibroDao implements AutoCloseable {
     
     public List<Object[]> librosConAutor() {
         // TODO: implementar con EntityManager, JPQL y rollback cuando proceda.
-        return List.of();
+        try (var em = managerFactory.createEntityManager()) {
+            return em.createQuery(
+                            "select l.titulo, a.nombre, a.nacionalidad from LibroEntity l, AutorEntity a "
+                                    + "where l.idAutor = a.idAutor order by l.titulo, l.idLibro",
+                            Object[].class)
+                    .getResultList();
+        } catch (RuntimeException ex) {
+            registrar("librosConAutor", ex);
+            return List.of();
+        }
     }
     
     public List<Object[]> contarPorGenero() {
         // TODO: implementar con EntityManager, JPQL y rollback cuando proceda.
-        return List.of();
+        try (var em = managerFactory.createEntityManager()) {
+            return em.createQuery(
+                            "select l.genero, count(l) from LibroEntity l group by l.genero order by l.genero",
+                            Object[].class)
+                    .getResultList();
+        } catch (RuntimeException ex) {
+            registrar("contarPorGenero", ex);
+            return List.of();
+        }
     }
     
     public List<Object[]> prestamosPorGeneroMinimo(long minimo) {
@@ -281,7 +298,5 @@ public class LibroDao implements AutoCloseable {
         return List.of();
     }
 
-
-    
     @Override public void close() {if(ownFactory && managerFactory.isOpen())managerFactory.close();}
 }
