@@ -1,0 +1,61 @@
+-J-Duser.language=
+-J-Duser.country=
+@options
+@packages
+-classpath
+'/home/B00R28026L/.m2/repository/org/hibernate/orm/hibernate-core/7.4.11.Final/hibernate-core-7.4.11.Final.jar:/home/B00R28026L/.m2/repository/jakarta/persistence/jakarta.persistence-api/3.2.0/jakarta.persistence-api-3.2.0.jar:/home/B00R28026L/.m2/repository/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1.jar:/home/B00R28026L/.m2/repository/org/hibernate/orm/hibernate-community-dialects/7.4.11.Final/hibernate-community-dialects-7.4.11.Final.jar:/home/B00R28026L/.m2/repository/org/xerial/sqlite-jdbc/3.46.1.0/sqlite-jdbc-3.46.1.0.jar:/home/B00R28026L/.m2/repository/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar'
+-encoding
+'UTF-8'
+-protected
+--release
+21
+-sourcepath
+'/home/B00R28026L/Descargas/sportrent-Alberto/src/main/java:/home/B00R28026L/Descargas/sportrent-Alberto/target/generated-sources/annotations'
+-author
+-bottom
+'Copyright &#169; 2026. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'/home/B00R28026L/Descargas/sportrent-Alberto/target/reports/apidocs'
+-docencoding
+'UTF-8'
+-Xdoclint:none
+-doctitle
+'sportrent 1.0.0 API'
+-use
+-version
+-windowtitle
+'sportrent 1.0.0 API'
+es.examen.sportrent.entity
+es.examen.sportrent.model
+es.examen.sportrent.mapper
+es.examen.sportrent.dao
+/home/B00R28026L/.m2/repository/org/hibernate/orm/hibernate-core/7.4.11.Final/hibernate-core-7.4.11.Final.jar = 1790468772000
+/home/B00R28026L/.m2/repository/jakarta/persistence/jakarta.persistence-api/3.2.0/jakarta.persistence-api-3.2.0.jar = 1712739547000
+/home/B00R28026L/.m2/repository/jakarta/transaction/jakarta.transaction-api/2.0.1/jakarta.transaction-api-2.0.1.jar = 1648723059000
+/home/B00R28026L/.m2/repository/org/hibernate/orm/hibernate-community-dialects/7.4.11.Final/hibernate-community-dialects-7.4.11.Final.jar = 1790468771000
+/home/B00R28026L/.m2/repository/org/xerial/sqlite-jdbc/3.46.1.0/sqlite-jdbc-3.46.1.0.jar = 1724033875000
+/home/B00R28026L/.m2/repository/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar = 1644327230000
+/home/B00R28026L/Descargas/sportrent-Alberto/src/main/java = 1794486194065
+/home/B00R28026L/Descargas/sportrent-Alberto/target/generated-sources/annotations = 1794509236251
+/home/B00R28026L/Descargas/sportrent-Alberto/target/reports/apidocs/copy.svg = 1794509272531
+/home/B00R28026L/Descargas/sportrent-Alberto/target/reports/apidocs/type-search-index.js = 1794509272506
+/home/B00R28026L/Descargas/sportrent-Alberto/target/reports/apidocs/tag-search-index.js = 1794509272506
+/home/B00R28026L/Descargas/sportrent-Alberto/target/reports/apidocs/package-search-index.js = 1794509272505
+/home/B00R28026L/Descargas/sportrent-Alberto/target/reports/apidocs/search-page.js = 1794509272533
+/home/B00R28026L/Descargas/sportrent-Alberto/target/reports/apidocs/allpackages-index.html = 1794509272503
+/home/B00R28026L/Descargas/sportrent-Alberto/target/reports/apidocs/overview-tree.html = 1794509272483
+/home/B00R28026L/Descargas/sportrent-Alberto/target/reports/apidocs/stylesheet.css = 1794509272530
+/home/B00R28026L/Descargas/sportrent-Alberto/target/reports/apidocs/link.svg = 1794509272532
+/home/B00R28026L/Descargas/sportrent-Alberto/target/reports/apidocs/index.html = 1794509272486
+/home/B00R28026L/Descargas/sportrent-Alberto/target/reports/apidocs/overview-summary.html = 1794509272525
+/home/B00R28026L/Descargas/sportrent-Alberto/target/reports/apidocs/search.js = 1794509272533
+/home/B00R28026L/Descargas/sportrent-Alberto/target/reports/apidocs/allclasses-index.html = 1794509272502
+/home/B00R28026L/Descargas/sportrent-Alberto/target/reports/apidocs/element-list = 1794509272405
+/home/B00R28026L/Descargas/sportrent-Alberto/target/reports/apidocs/member-search-index.js = 1794509272506
+/home/B00R28026L/Descargas/sportrent-Alberto/target/reports/apidocs/index-all.html = 1794509272523
+/home/B00R28026L/Descargas/sportrent-Alberto/target/reports/apidocs/help-doc.html = 1794509272529
+/home/B00R28026L/Descargas/sportrent-Alberto/target/reports/apidocs/script.js = 1794509272531
+/home/B00R28026L/Descargas/sportrent-Alberto/target/reports/apidocs/module-search-index.js = 1794509272504
+/home/B00R28026L/Descargas/sportrent-Alberto/target/reports/apidocs/search.html = 1794509272524

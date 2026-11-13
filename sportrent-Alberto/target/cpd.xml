@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd-cpd xmlns="https://pmd-code.org/schema/cpd-report"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         pmdVersion="7.17.0"
+         timestamp="2026-11-12T18:47:48.003992992Z"
+         version="1.0.0"
+         xsi:schemaLocation="https://pmd-code.org/schema/cpd-report https://pmd.github.io/schema/cpd-report_1_0_0.xsd">
+   <file path="/home/B00R28026L/Descargas/sportrent-Alberto/src/main/java/es/examen/sportrent/dao/AlquilerDao.java"
+         totalNumberOfTokens="129"/>
+   <file path="/home/B00R28026L/Descargas/sportrent-Alberto/src/main/java/es/examen/sportrent/dao/ClienteDao.java"
+         totalNumberOfTokens="131"/>
+   <file path="/home/B00R28026L/Descargas/sportrent-Alberto/src/main/java/es/examen/sportrent/dao/EquipoDao.java"
+         totalNumberOfTokens="129"/>
+</pmd-cpd>

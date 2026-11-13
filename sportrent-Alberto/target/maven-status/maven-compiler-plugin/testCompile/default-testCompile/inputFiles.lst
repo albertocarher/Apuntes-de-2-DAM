@@ -1,0 +1,9 @@
+/home/B00R28026L/Descargas/sportrent-Alberto/src/test/java/es/examen/sportrent/test/A01ClienteDaoTest.java
+/home/B00R28026L/Descargas/sportrent-Alberto/src/test/java/es/examen/sportrent/test/A02EquipoDaoTest.java
+/home/B00R28026L/Descargas/sportrent-Alberto/src/test/java/es/examen/sportrent/test/A03AlquilerDaoTest.java
+/home/B00R28026L/Descargas/sportrent-Alberto/src/test/java/es/examen/sportrent/test/B01ConsultasBasicasTest.java
+/home/B00R28026L/Descargas/sportrent-Alberto/src/test/java/es/examen/sportrent/test/B02ConsultasIntermediasTest.java
+/home/B00R28026L/Descargas/sportrent-Alberto/src/test/java/es/examen/sportrent/test/B03ConsultasAvanzadasTest.java
+/home/B00R28026L/Descargas/sportrent-Alberto/src/test/java/es/examen/sportrent/test/BaseTest.java
+/home/B00R28026L/Descargas/sportrent-Alberto/src/test/java/es/examen/sportrent/test/config/JpaUtil.java
+/home/B00R28026L/Descargas/sportrent-Alberto/src/test/java/es/examen/sportrent/test/config/SqlCapture.java

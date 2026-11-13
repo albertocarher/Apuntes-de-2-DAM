@@ -1,0 +1,17 @@
+/home/B00R28026L/Descargas/sportrent-Alberto/src/main/java/es/examen/sportrent/dao/AlquilerDao.java
+/home/B00R28026L/Descargas/sportrent-Alberto/src/main/java/es/examen/sportrent/dao/ClienteDao.java
+/home/B00R28026L/Descargas/sportrent-Alberto/src/main/java/es/examen/sportrent/dao/EquipoDao.java
+/home/B00R28026L/Descargas/sportrent-Alberto/src/main/java/es/examen/sportrent/entity/AlquilerEntity.java
+/home/B00R28026L/Descargas/sportrent-Alberto/src/main/java/es/examen/sportrent/entity/ClienteEntity.java
+/home/B00R28026L/Descargas/sportrent-Alberto/src/main/java/es/examen/sportrent/entity/EquipoEntity.java
+/home/B00R28026L/Descargas/sportrent-Alberto/src/main/java/es/examen/sportrent/mapper/AlquilerMapper.java
+/home/B00R28026L/Descargas/sportrent-Alberto/src/main/java/es/examen/sportrent/mapper/ClienteMapper.java
+/home/B00R28026L/Descargas/sportrent-Alberto/src/main/java/es/examen/sportrent/mapper/EquipoMapper.java
+/home/B00R28026L/Descargas/sportrent-Alberto/src/main/java/es/examen/sportrent/model/Alquiler.java
+/home/B00R28026L/Descargas/sportrent-Alberto/src/main/java/es/examen/sportrent/model/Cliente.java
+/home/B00R28026L/Descargas/sportrent-Alberto/src/main/java/es/examen/sportrent/model/ClienteAlquileres.java
+/home/B00R28026L/Descargas/sportrent-Alberto/src/main/java/es/examen/sportrent/model/Equipo.java
+/home/B00R28026L/Descargas/sportrent-Alberto/src/main/java/es/examen/sportrent/model/EquipoAlquileres.java
+/home/B00R28026L/Descargas/sportrent-Alberto/src/main/java/es/examen/sportrent/model/EquipoIngresos.java
+/home/B00R28026L/Descargas/sportrent-Alberto/src/main/java/es/examen/sportrent/model/EquipoPrecio.java
+/home/B00R28026L/Descargas/sportrent-Alberto/src/main/java/es/examen/sportrent/model/PrecioCategoria.java
