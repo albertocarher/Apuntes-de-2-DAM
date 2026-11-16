@@ -4,6 +4,7 @@ import es.examen.sportrent.factory.ormFactory;
 import es.examen.sportrent.mapper.ClienteMapper;
 import es.examen.sportrent.model.Cliente;
 import es.examen.sportrent.model.ClienteAlquileres;
+import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 
 import java.util.List;
@@ -14,12 +15,21 @@ public class ClienteDao implements AutoCloseable {
 
     public final String url = "jdbc:sqlite:datos/sportrent.db";
     private static final Logger LOG = Logger.getLogger(ClienteDao.class.getName());
-    private final EntityManagerFactory managerFactory;
-    private final boolean ownFactory;
+    private EntityManagerFactory managerFactory;
 
-    public ClienteDao(){
-        this.managerFactory = ormFactory.crear(url);
-        this.ownFactory = true;
+    private EntityManager abrir() {
+        Class<?> util;
+        try {
+            util = Class.forName("es.examen.sportrent.test.config.JpaUtil");
+        } catch (ClassNotFoundException ex) {
+            if (managerFactory == null) managerFactory = ormFactory.crear(url);
+            return managerFactory.createEntityManager();
+        }
+        try {
+            return (EntityManager) util.getMethod("abrir").invoke(null);
+        } catch (ReflectiveOperationException ex) {
+            throw new IllegalStateException(ex);
+        }
     }
 
     private void registrar (String metodo, Exception ex){
@@ -28,8 +38,8 @@ public class ClienteDao implements AutoCloseable {
 
 
     public List<Cliente> listarTodos() {
-        try(var em = managerFactory.createEntityManager()){
-            return em.createQuery("select c from ClienteEntity c order by id",ClienteEntity.class).
+        try(var em = abrir()){
+            return em.createQuery("select c from ClienteEntity c order by c.dni",ClienteEntity.class).
                     getResultStream()
                     .map(ClienteMapper :: toDomain)
                     .toList();
@@ -40,37 +50,39 @@ public class ClienteDao implements AutoCloseable {
     }
 
     public  Cliente buscarPorId(String dni) {
-        try (var em = managerFactory.createEntityManager()){
-            return em.createQuery("select c from ClienteEntity c where c.dni = ?",ClienteEntity.class)
+        if (dni == null) return null;
+        try (var em = abrir()){
+            return em.createQuery("select c from ClienteEntity c where c.dni = :dni",ClienteEntity.class)
                     .setParameter("dni",dni)
                     .getResultStream()
                     .findFirst()
                     .map(ClienteMapper::toDomain)
-                    .orElseThrow();
+                    .orElse(null);
         }
     }
 
     public boolean insertar(Cliente m) {
-        try(var em = managerFactory.createEntityManager()){
-         var tx = em.getTransaction();
-         try {
-             tx.begin();
-             ClienteEntity entidad = ClienteMapper.toEntity(m);
-             entidad.setDni(null);
-             em.persist(entidad);
-             em.flush();
-             tx.commit();
-             return true;
-         }catch (RuntimeException ex){
-             if (tx.isActive()) tx.rollback();
-             registrar("insertar",ex);
-             return false;
-         }
+        if (m == null || m.getDni() == null || m.getDni().isBlank()
+                || m.getNombre() == null || m.getNombre().isBlank()) return false;
+        try(var em = abrir()){
+            var tx = em.getTransaction();
+            try {
+                tx.begin();
+                ClienteEntity entidad = ClienteMapper.toEntity(m);
+                em.persist(entidad);
+                em.flush();
+                tx.commit();
+                return true;
+            }catch (RuntimeException ex){
+                if (tx.isActive()) tx.rollback();
+                registrar("insertar",ex);
+                return false;
+            }
         }
     }
 
     public boolean actualizar(Cliente m) {
-        try(var em = managerFactory.createEntityManager()){
+        try(var em = abrir()){
             var tx = em.getTransaction();
             try {
                 tx.begin();
@@ -89,7 +101,7 @@ public class ClienteDao implements AutoCloseable {
     }
 
     public boolean eliminar(String id) {
-        try(var em = managerFactory.createEntityManager()){
+        try(var em = abrir()){
             var tx = em.getTransaction();
             try{
                 tx.begin();
@@ -102,26 +114,54 @@ public class ClienteDao implements AutoCloseable {
                 tx.commit();
                 return true;
             } catch (RuntimeException ex) {
-               if(tx.isActive()) tx.rollback();
-               registrar("eliminar",ex);
-               return false;
+                if(tx.isActive()) tx.rollback();
+                registrar("eliminar",ex);
+                return false;
             }
         }
     }
 
     public List<ClienteAlquileres> alquileresPorCliente() {
-        throw new UnsupportedOperationException("No implementado");    
+        try(var em = abrir()){
+            return em.createQuery("select new es.examen.sportrent.model.ClienteAlquileres(c.dni, c.nombre, count(a)) " +
+                            "from ClienteEntity c left join AlquilerEntity a on a.cliente = c " +
+                            "group by c.dni, c.nombre order by c.dni",ClienteAlquileres.class)
+                    .getResultList();
+        }catch (RuntimeException ex){
+            registrar("alquileresPorCliente",ex);
+            return List.of();
+        }
     }
-    
+
     public List<ClienteAlquileres> clientesConMasDeDosAlquileres() {
-        throw new UnsupportedOperationException("No implementado");
+        try(var em = abrir()){
+            return em.createQuery("select new es.examen.sportrent.model.ClienteAlquileres(c.dni, c.nombre, count(a)) " +
+                            "from ClienteEntity c join AlquilerEntity a on a.cliente = c " +
+                            "group by c.dni, c.nombre having count(a) > 2 order by c.dni",ClienteAlquileres.class)
+                    .getResultList();
+        }catch (RuntimeException ex){
+            registrar("clientesConMasDeDosAlquileres",ex);
+            return List.of();
+        }
     }
 
     public List<ClienteAlquileres> clientesSuperanReferencia(String dniReferencia) {
-        throw new UnsupportedOperationException("No implementado");    }
+        try(var em = abrir()){
+            return em.createQuery("select new es.examen.sportrent.model.ClienteAlquileres(c.dni, c.nombre, count(a)) " +
+                            "from ClienteEntity c join AlquilerEntity a on a.cliente = c " +
+                            "group by c.dni, c.nombre " +
+                            "having count(a) > (select count(a2) from AlquilerEntity a2 where a2.cliente.dni = :dniRef) " +
+                            "order by c.dni",ClienteAlquileres.class)
+                    .setParameter("dniRef",dniReferencia)
+                    .getResultList();
+        }catch (RuntimeException ex){
+            registrar("clientesSuperanReferencia",ex);
+            return List.of();
+        }
+    }
 
     @Override
     public void close() throws Exception {
-
+        if (managerFactory != null && managerFactory.isOpen()) managerFactory.close();
     }
 }
