@@ -16,11 +16,20 @@ public class LibroDao implements AutoCloseable {
     private static final Logger LOG=Logger.getLogger(LibroDao.class.getName());
     private final EntityManagerFactory managerFactory;
     private final boolean ownFactory;
-    
-    public LibroDao(String url) {managerFactory=OrmFactory.crear(url);ownFactory=true;}
-    
-    public LibroDao(EntityManagerFactory factory) {managerFactory=factory;ownFactory=false;}
-    private void registrar(String metodo,Exception ex) {LOG.log(Level.WARNING,metodo+" no se pudo completar: "+ex.getMessage());}
+
+    public LibroDao(String url) {
+        managerFactory = OrmFactory.crear(url);
+        ownFactory = true;
+    }
+
+    public LibroDao(EntityManagerFactory factory) {
+        managerFactory = factory;
+        ownFactory = false;
+    }
+
+    private void registrar(String metodo, Exception ex) {
+        LOG.log(Level.WARNING, metodo + " no se pudo completar: " + ex.getMessage());
+    }
     
     public List<Libro> listar() {
         try (var em = managerFactory.createEntityManager()) {
