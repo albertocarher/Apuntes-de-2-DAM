@@ -1,4 +1,11 @@
-/home/alumno/Apuntes-de-2-DAM/api-tareas/src/main/java/aula/tareas/Tarea.java
-/home/alumno/Apuntes-de-2-DAM/api-tareas/src/main/java/aula/tareas/TareaController.java
-/home/alumno/Apuntes-de-2-DAM/api-tareas/src/main/java/aula/tareas/TareaService.java
-/home/alumno/Apuntes-de-2-DAM/api-tareas/src/main/java/aula/tareas/TareasApplication.java
+/home/joperexp/Descargas/api-tareas/src/main/java/aula/tareas/TareasApplication.java
+/home/joperexp/Descargas/api-tareas/src/main/java/aula/tareas/controller/TareaControllerCsv.java
+/home/joperexp/Descargas/api-tareas/src/main/java/aula/tareas/controller/TareaControllerJson.java
+/home/joperexp/Descargas/api-tareas/src/main/java/aula/tareas/modelo/Tarea.java
+/home/joperexp/Descargas/api-tareas/src/main/java/aula/tareas/repository/ITareaRepository.java
+/home/joperexp/Descargas/api-tareas/src/main/java/aula/tareas/repository/TareaRepository.java
+/home/joperexp/Descargas/api-tareas/src/main/java/aula/tareas/repository/TareaRepositoryCsv.java
+/home/joperexp/Descargas/api-tareas/src/main/java/aula/tareas/repository/TareaRepositoryJson.java
+/home/joperexp/Descargas/api-tareas/src/main/java/aula/tareas/service/ITareaService.java
+/home/joperexp/Descargas/api-tareas/src/main/java/aula/tareas/service/TareaServiceCsv.java
+/home/joperexp/Descargas/api-tareas/src/main/java/aula/tareas/service/TareaServiceJson.java

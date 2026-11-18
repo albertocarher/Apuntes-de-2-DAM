@@ -25,8 +25,8 @@ Usa la ruta devuelta en `Location` si ya creaste otras tareas.
 
 ## 3. Seguir el código
 
-`TareaController` recibe HTTP y valida el título. Spring le proporciona
-`TareaService` mediante el constructor. El servicio conserva las tareas en
+`TareaControllerCsv` recibe HTTP y valida el título. Spring le proporciona
+`TareaServiceCsv` mediante el constructor. El servicio conserva las tareas en
 memoria, así que cada reinicio comienza con una lista vacía. La persistencia
 en PostgreSQL se trabaja más adelante en la ruta.
 
