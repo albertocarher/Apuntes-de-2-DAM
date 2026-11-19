@@ -1,6 +1,6 @@
 package aula.tareas.repository;
 
-import aula.tareas.modelo.Tarea;
+import aula.tareas.api.TareaRequest;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import org.springframework.stereotype.Repository;
@@ -17,7 +17,7 @@ public class TareaRepositoryXml implements ITareaRepository{
     private final AtomicLong secuencia = new AtomicLong();
     private Path path;
     private final XmlMapper mapper = new XmlMapper();
-    private List<Tarea> lista;
+    private List<TareaRequest> lista;
 
     public TareaRepositoryXml() {
         this("data/tarea.xml");
@@ -37,13 +37,13 @@ public class TareaRepositoryXml implements ITareaRepository{
             }
         }
         lista = getAll();
-        secuencia.set(lista.stream().mapToLong(Tarea::id).max().orElse(0));
+        secuencia.set(lista.stream().mapToLong(TareaRequest::id).max().orElse(0));
     }
 
     @Override
-    public Tarea create(String titulo) {
+    public TareaRequest create(String titulo) {
         long id = secuencia.incrementAndGet();
-        var tarea = new Tarea(id, titulo.strip());
+        var tarea = new TareaRequest(id, titulo.strip());
         lista.add(tarea);
         saveAll(lista);
         return tarea;
@@ -59,12 +59,12 @@ public class TareaRepositoryXml implements ITareaRepository{
     }
 
     @Override
-    public List<Tarea> findAll() {
+    public List<TareaRequest> findAll() {
         return List.copyOf(lista);
     }
 
     @Override
-    public Tarea findById(long identificador) {
+    public TareaRequest findById(long identificador) {
         return lista.stream()
                 .filter(tarea -> tarea.id() == identificador)
                 .findFirst()
@@ -72,18 +72,18 @@ public class TareaRepositoryXml implements ITareaRepository{
     }
 
     @Override
-    public Tarea update(Tarea tarea) {
+    public TareaRequest update(TareaRequest tareaRequest) {
         for (int i = 0; i < lista.size(); i++) {
-            if (lista.get(i).id() == tarea.id()) {
-                lista.set(i, tarea);
+            if (lista.get(i).id() == tareaRequest.id()) {
+                lista.set(i, tareaRequest);
                 saveAll(lista);
-                return tarea;
+                return tareaRequest;
             }
         }
         return null;
     }
 
-    private void saveAll(List<Tarea> items) {
+    private void saveAll(List<TareaRequest> items) {
         try {
             Path parent = path.getParent();
             if (parent != null) {
@@ -94,10 +94,10 @@ public class TareaRepositoryXml implements ITareaRepository{
         }
     }
 
-    public List<Tarea> getAll() {
+    public List<TareaRequest> getAll() {
         try {
             return new ArrayList<>(mapper.readValue(
-                    path.toFile(), new TypeReference<List<Tarea>>() {}));
+                    path.toFile(), new TypeReference<List<TareaRequest>>() {}));
         }catch (Exception exception) {
             return new ArrayList<>();
         }

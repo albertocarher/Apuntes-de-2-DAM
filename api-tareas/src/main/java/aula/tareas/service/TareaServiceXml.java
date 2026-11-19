@@ -1,6 +1,6 @@
 package aula.tareas.service;
 
-import aula.tareas.modelo.Tarea;
+import aula.tareas.api.TareaRequest;
 import aula.tareas.repository.ITareaRepository;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -17,17 +17,17 @@ public class TareaServiceXml implements ITareaService{
     }
 
     @Override
-    public List<Tarea> listar() {
+    public List<TareaRequest> listar() {
         return tareaRepositoryXml.findAll();
     }
 
     @Override
-    public Tarea buscar(long id) {
+    public TareaRequest buscar(long id) {
         return tareaRepositoryXml.findById(id);
     }
 
     @Override
-    public Tarea crear(String titulo) {
+    public TareaRequest crear(String titulo) {
         if (titulo == null || titulo.isBlank()) {
             return null;
         }

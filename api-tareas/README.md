@@ -8,7 +8,7 @@ El proyecto fija Spring Boot 4.1.2 en el POM.
 Desde la carpeta del proyecto ejecuta `mvn spring-boot:run`. Deja esa terminal abierta.
 Desde otra terminal, ejecuta los ejemplos de abajo. En PowerShell usa `curl.exe`.
 
-## 2. Crear y comprobar una tarea
+## 2. Crear y comprobar una tareaRequest
 
 ```sh
 curl -i http://localhost:8080/api/tareas
@@ -19,7 +19,7 @@ curl -i http://localhost:8080/api/tareas/999
 ```
 
 En el primer arranque los resultados esperados son, en orden, **200** con `[]`,
-**201** con cabecera `Location: /api/tareas/1`, **200** con la tarea creada,
+**201** con cabecera `Location: /api/tareas/1`, **200** con la tareaRequest creada,
 **400** por título en blanco y **404** para el identificador desconocido.
 Usa la ruta devuelta en `Location` si ya creaste otras tareas.
 
@@ -32,7 +32,7 @@ en PostgreSQL se trabaja más adelante en la ruta.
 
 ## Entrega breve
 
-Crea una segunda tarea con otro título. Entrega el código de estado, la
+Crea una segunda tareaRequest con otro título. Entrega el código de estado, la
 cabecera `Location` y el resultado de consultar esa URL.
 
 Para empaquetar, ejecuta `mvn package`. Después puedes iniciar el JAR con

@@ -4,7 +4,7 @@ import java.net.URI;
 import java.util.List;
 
 
-import aula.tareas.modelo.Tarea;
+import aula.tareas.api.TareaRequest;
 import aula.tareas.service.TareaServiceCsv;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
@@ -22,19 +22,19 @@ class TareaControllerCsv {
     }
 
     @GetMapping
-    List<Tarea> listar() {
+    List<TareaRequest> listar() {
         return servicio.listar();
     }
 
     @GetMapping("/{id}")
-    ResponseEntity<Tarea> buscar(@PathVariable long id) {
+    ResponseEntity<TareaRequest> buscar(@PathVariable long id) {
         return ResponseEntity.ofNullable(servicio.buscar(id));
     }
 
     @PostMapping
-    ResponseEntity<Tarea> crear(@Valid @RequestBody NuevaTarea peticion) {
-        Tarea tarea = servicio.crear(peticion.titulo());
-        return ResponseEntity.created(URI.create("/api/csv/tareas/" + tarea.id())).body(tarea);
+    ResponseEntity<TareaRequest> crear(@Valid @RequestBody NuevaTarea peticion) {
+        TareaRequest tareaRequest = servicio.crear(peticion.titulo());
+        return ResponseEntity.created(URI.create("/api/csv/tareas/" + tareaRequest.id())).body(tareaRequest);
     }
 
     public record NuevaTarea(@NotBlank String titulo) {}

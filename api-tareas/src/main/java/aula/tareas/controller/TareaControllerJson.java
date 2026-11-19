@@ -1,6 +1,6 @@
 package aula.tareas.controller;
 
-import aula.tareas.modelo.Tarea;
+import aula.tareas.api.TareaRequest;
 import aula.tareas.service.ITareaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -13,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -30,7 +29,7 @@ public class TareaControllerJson {
     @GetMapping
     @Operation(summary = "Obtener todos las tareas desde el fichero json")
     @ApiResponses(@ApiResponse(responseCode = "200", description = "Se obtiene el listado de tareas"))
-    List<Tarea> listar() {
+    List<TareaRequest> listar() {
         return serviceJson.listar();
     }
 
@@ -40,7 +39,7 @@ public class TareaControllerJson {
             @ApiResponse(responseCode = "200", description = "Tarea encontrada"),
             @ApiResponse(responseCode = "404", description = "Tarea no encontrada")
     })
-    ResponseEntity<Tarea> buscar(@PathVariable long id) {
+    ResponseEntity<TareaRequest> buscar(@PathVariable long id) {
         return ResponseEntity.ofNullable(serviceJson.buscar(id));
     }
 
@@ -49,9 +48,9 @@ public class TareaControllerJson {
             @ApiResponse(responseCode = "201", description = "Tarea creada"),
             @ApiResponse(responseCode = "400", description = "Tarea existe")
     })
-    ResponseEntity<Tarea> crear(@Valid @RequestBody NuevaTarea peticion) {
-        Tarea tarea = serviceJson.crear(peticion.titulo());
-        return ResponseEntity.created(URI.create("/api/json/tareas/" + tarea.id())).body(tarea);
+    ResponseEntity<TareaRequest> crear(@Valid @RequestBody NuevaTarea peticion) {
+        TareaRequest tareaRequest = serviceJson.crear(peticion.titulo());
+        return ResponseEntity.created(URI.create("/api/json/tareas/" + tareaRequest.id())).body(tareaRequest);
     }
 
     public record NuevaTarea(@NotBlank String titulo) {}
