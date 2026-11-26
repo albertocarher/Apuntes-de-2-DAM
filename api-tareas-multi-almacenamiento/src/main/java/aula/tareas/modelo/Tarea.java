@@ -24,5 +24,5 @@ public record Tarea(Long identificador, String nombre) {
     public Long getIdentificador() {
         return identificador;
     }
-    
+
 }
